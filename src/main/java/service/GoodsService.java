@@ -1,7 +1,7 @@
 package service;
 
 import entity.GoodsEntity;
-import model.Goods;
+import model.GoodsDto;
 import repository.GoodsRepository;
 
 import javax.ejb.EJB;
@@ -18,72 +18,39 @@ public class GoodsService {
 
     @EJB
     GoodsRepository goodsRepository;
-//    @EJB
-//    GoodsRepositoryImpl goodsRepository;
 
-    public String writeSomething(int id) {
-        GoodsEntity goods = goodsRepository.read(id);
+//    private GoodsDto entityToDto(GoodsEntity goodsEntity) {
+//        return new GoodsDto.GoodsDtoBuilder(goodsEntity.getId())
+//                .setName(goodsEntity.getName())
+//                .setPrice(goodsEntity.getPrice())
+//                .build();
+//    }
 
-        this.id = goods.getId();
-        this.name = goods.getName();
-        this.price = goods.getPrice();
+    private GoodsDto entityToDto(GoodsEntity goodsEntity) {
+        GoodsDto goodsDto = new GoodsDto();
+        goodsDto.setId(goodsEntity.getId());
+        goodsDto.setName(goodsEntity.getName());
+        goodsDto.setPrice(goodsEntity.getPrice());
 
-        String string = "Goods: id-" + this.id + " name-" + this.name + " price-" + this.price;
-
-        return string;
+        return goodsDto;
     }
 
-    public String writeSomethingNew() {
-        List<GoodsEntity> goods = goodsRepository.findAll();
-
-        String string = "";
-
-        for (int i = 0; i < goods.size(); i++) {
-            this.id = goods.get(i).getId();
-            this.name = goods.get(i).getName();
-            this.price = goods.get(i).getPrice();
-
-            string += "Goods: id-" + this.id + " name-" + this.name + " price-" + this.price;
-
-            if (i < goods.size() - 1) {
-                string += "\n";
-            }
-        }
-
-        return string;
-    }
-
-    public List<Goods> getGoods() {
+    public List<GoodsDto> getGoods() {
         List<GoodsEntity> goodsEntities = goodsRepository.findAll();
-        List<Goods> goodsList = new ArrayList<Goods>();
+        List<GoodsDto> goodsDtoList = new ArrayList<GoodsDto>();
 
-        for (int i = 0; i < goodsEntities.size(); i++) {
-            this.id = goodsEntities.get(i).getId();
-            this.name = goodsEntities.get(i).getName();
-            this.price = goodsEntities.get(i).getPrice();
+        for (GoodsEntity goodsEntity: goodsEntities) {
+            GoodsDto goodsDto = entityToDto(goodsEntity);
 
-            Goods goods = new Goods();
-            goods.setId(this.id);
-            goods.setName(this.name);
-            goods.setPrice(this.price);
-
-            goodsList.add(goods);
+            goodsDtoList.add(goodsDto);
         }
 
-        return goodsList;
+        return goodsDtoList;
     }
 
-    public Goods getGoodsById(int id) {
+    public GoodsDto getGoodsById(int id) {
         GoodsEntity goodsEntity = goodsRepository.read(id);
-        this.id = goodsEntity.getId();
-        this.name = goodsEntity.getName();
-        this.price = goodsEntity.getPrice();
 
-        Goods goods = new Goods();
-        goods.setId(this.id);
-        goods.setName(this.name);
-        goods.setPrice(this.price);
-
-        return goods;
+        return entityToDto(goodsEntity);
     }
 }

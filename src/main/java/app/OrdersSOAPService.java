@@ -1,6 +1,6 @@
-package controller;
+package app;
 
-import model.Goods;
+import model.GoodsDto;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -10,11 +10,11 @@ import java.util.List;
 
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT)
-public interface GoodsController {
+public interface OrdersSOAPService {
 
     @WebMethod
-    List<Goods> getAllGoods();
+    List<GoodsDto> getAllGoods();
 
     @WebMethod
-    Goods getGoodsById(@WebParam(name = "id") int id);
+    GoodsDto getGoodsById(@WebParam(name = "id") int id);
 }
