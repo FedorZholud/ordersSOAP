@@ -1,7 +1,7 @@
-package controller.impl;
+package app.impl;
 
-import controller.GoodsController;
-import model.Goods;
+import app.OrdersSOAPService;
+import model.GoodsDto;
 import service.GoodsService;
 
 import javax.ejb.EJB;
@@ -10,17 +10,17 @@ import javax.jws.WebService;
 import java.util.List;
 
 @Stateless
-@WebService(endpointInterface = "controller.GoodsController")
-public class GoodsControllerImpl implements GoodsController {
+@WebService(endpointInterface = "app.OrdersSOAPService")
+public class OrdersSOAPServiceImpl implements OrdersSOAPService {
 
     @EJB
     GoodsService goodsService;
 
-    public List<Goods> getAllGoods() {
+    public List<GoodsDto> getAllGoods() {
         return goodsService.getGoods();
     }
 
-    public Goods getGoodsById(int id) {
+    public GoodsDto getGoodsById(int id) {
         return goodsService.getGoodsById(id);
     }
 }
