@@ -1,7 +1,6 @@
 package model.marshaling;
 
 
-import javax.xml.bind.annotation.XmlElement;
 
 public class AdaptedGoodsDto {
 
@@ -13,7 +12,6 @@ public class AdaptedGoodsDto {
         this.id = id;
     }
 
-    @XmlElement
     public int getId() {
         return id;
     }
@@ -22,7 +20,6 @@ public class AdaptedGoodsDto {
         this.name = name;
     }
 
-    @XmlElement
     public String getName() {
         return name;
     }
@@ -31,7 +28,6 @@ public class AdaptedGoodsDto {
         this.price = price;
     }
 
-    @XmlElement
     public double getPrice() {
         return price;
     }

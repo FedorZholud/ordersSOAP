@@ -3,8 +3,10 @@ package model;
 import model.marshaling.GoodsDtoAdapter;
 
 
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+@XmlRootElement
 @XmlJavaTypeAdapter(GoodsDtoAdapter.class)
 public class GoodsDto {
 
@@ -22,6 +24,11 @@ public class GoodsDto {
 
     public double getPrice() {
         return price;
+    }
+
+    @SuppressWarnings("unused")
+    private GoodsDto() {
+        this(0, null, 0);
     }
 
     private GoodsDto(int id, String name, double price) {

@@ -2,7 +2,6 @@ package service;
 
 
 import entity.GoodsEntity;
-import model.Goods;
 import model.GoodsDto;
 import repository.GoodsRepository;
 
@@ -13,10 +12,6 @@ import java.util.List;
 
 @Stateless
 public class GoodsService {
-
-    int id;
-    String name;
-    double price;
 
     @EJB
     GoodsRepository goodsRepository;
@@ -29,30 +24,25 @@ public class GoodsService {
                 .build();
     }
 
-    public List<Goods> getGoods() {
+    public List<GoodsDto> getGoods() {
         List<GoodsEntity> goodsEntities = goodsRepository.findAll();
-        //Logger.INFO(goodsEntities);
-        List<Goods> goodsList = new ArrayList<Goods>();
+        List<GoodsDto> goodsDtoList = new ArrayList<GoodsDto>();
 
         for (GoodsEntity goodsEntity: goodsEntities) {
             GoodsDto goodsDto = entityToDto(goodsEntity);
-            Goods goods = new Goods();
-            goods.setGoodsDto(goodsDto);
 
-            goodsList.add(goods);
+            goodsDtoList.add(goodsDto);
         }
 
-        return goodsList;
+        return goodsDtoList;
 
 //        return goodsEntities.stream()
 //                .map(goodsEntity -> entityToDto(goodsEntity));
     }
 
-    public Goods getGoodsById(int id) {
+    public GoodsDto getGoodsById(int id) {
         GoodsEntity goodsEntity = goodsRepository.read(id);
-        Goods goods = new Goods();
-        goods.setGoodsDto(entityToDto(goodsEntity));
 
-        return goods;
+        return entityToDto(goodsEntity);
     }
 }
