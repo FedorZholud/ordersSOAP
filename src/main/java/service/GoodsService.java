@@ -1,6 +1,8 @@
 package service;
 
+
 import entity.GoodsEntity;
+import model.Goods;
 import model.GoodsDto;
 import repository.GoodsRepository;
 
@@ -19,38 +21,38 @@ public class GoodsService {
     @EJB
     GoodsRepository goodsRepository;
 
-//    private GoodsDto entityToDto(GoodsEntity goodsEntity) {
-//        return new GoodsDto.GoodsDtoBuilder(goodsEntity.getId())
-//                .setName(goodsEntity.getName())
-//                .setPrice(goodsEntity.getPrice())
-//                .build();
-//    }
-
     private GoodsDto entityToDto(GoodsEntity goodsEntity) {
-        GoodsDto goodsDto = new GoodsDto();
-        goodsDto.setId(goodsEntity.getId());
-        goodsDto.setName(goodsEntity.getName());
-        goodsDto.setPrice(goodsEntity.getPrice());
-
-        return goodsDto;
+        return GoodsDto.builder()
+                .setId(goodsEntity.getId())
+                .setName(goodsEntity.getName())
+                .setPrice(goodsEntity.getPrice())
+                .build();
     }
 
-    public List<GoodsDto> getGoods() {
+    public List<Goods> getGoods() {
         List<GoodsEntity> goodsEntities = goodsRepository.findAll();
-        List<GoodsDto> goodsDtoList = new ArrayList<GoodsDto>();
+        //Logger.INFO(goodsEntities);
+        List<Goods> goodsList = new ArrayList<Goods>();
 
         for (GoodsEntity goodsEntity: goodsEntities) {
             GoodsDto goodsDto = entityToDto(goodsEntity);
+            Goods goods = new Goods();
+            goods.setGoodsDto(goodsDto);
 
-            goodsDtoList.add(goodsDto);
+            goodsList.add(goods);
         }
 
-        return goodsDtoList;
+        return goodsList;
+
+//        return goodsEntities.stream()
+//                .map(goodsEntity -> entityToDto(goodsEntity));
     }
 
-    public GoodsDto getGoodsById(int id) {
+    public Goods getGoodsById(int id) {
         GoodsEntity goodsEntity = goodsRepository.read(id);
+        Goods goods = new Goods();
+        goods.setGoodsDto(entityToDto(goodsEntity));
 
-        return entityToDto(goodsEntity);
+        return goods;
     }
 }
