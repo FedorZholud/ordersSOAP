@@ -1,7 +1,6 @@
 package app.impl;
 
 import app.OrdersSOAPService;
-import model.Goods;
 import model.GoodsDto;
 import service.GoodsService;
 
@@ -17,11 +16,11 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     @EJB
     GoodsService goodsService;
 
-    public List<Goods> getAllGoods() {
+    public List<GoodsDto> getAllGoods() {
         return goodsService.getGoods();
     }
 
-    public Goods getGoodsById(int id) {
+    public GoodsDto getGoodsById(int id) {
         return goodsService.getGoodsById(id);
     }
 }
