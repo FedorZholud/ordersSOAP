@@ -2,7 +2,6 @@ package repository;
 
 import entity.GoodsEntity;
 
-import java.io.Serializable;
 import java.util.List;
 
 

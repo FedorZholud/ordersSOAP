@@ -1,18 +1,14 @@
 package service;
 
 import entity.OrdersListEntity;
-import repository.OrdersListRepository;
+import model.OrdersListDto;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import java.util.List;
 
-@Stateless
-public class OrdersListService {
+public interface OrdersListService {
 
-    @EJB
-    OrdersListRepository ordersListRepository;
+    void createOrdersList(OrdersListEntity ordersList);
 
-    public void createOrdersList(OrdersListEntity ordersList) {
-        ordersListRepository.create(ordersList);
-    }
+    List<OrdersListDto> getOrdersList();
+
 }

@@ -15,7 +15,7 @@ public class GoodsEntity implements Serializable {
     private String name;
 
     @Column(name = "price")
-    private Double price;
+    private double price;
 
     public int getId() {
         return id;
@@ -33,7 +33,7 @@ public class GoodsEntity implements Serializable {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 

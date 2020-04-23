@@ -1,6 +1,7 @@
 package app;
 
 import model.GoodsDto;
+import model.OrdersListDto;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -17,4 +18,7 @@ public interface OrdersSOAPService {
 
     @WebMethod
     GoodsDto getGoodsById(@WebParam(name = "id") int id);
+
+    @WebMethod
+    List<OrdersListDto> getOrdersList();
 }

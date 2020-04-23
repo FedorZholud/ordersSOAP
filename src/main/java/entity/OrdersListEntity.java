@@ -19,13 +19,13 @@ public class OrdersListEntity implements Serializable {
     private String goodsName;
 
     @Column(name = "price")
-    private int price;
+    private double price;
 
     @Column(name = "amount")
     private int amount;
 
     @Column(name = "price_sum")
-    private int priceSum;
+    private double priceSum;
 
     public int getId() {
         return id;
@@ -51,7 +51,7 @@ public class OrdersListEntity implements Serializable {
         this.goodsName = goodsName;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -67,7 +67,7 @@ public class OrdersListEntity implements Serializable {
         this.amount = amount;
     }
 
-    public int getPriceSum() {
+    public double getPriceSum() {
         return priceSum;
     }
 
