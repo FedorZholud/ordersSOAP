@@ -16,10 +16,12 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     @EJB
     GoodsService goodsService;
 
+    @Override
     public List<GoodsDto> getAllGoods() {
         return goodsService.getGoods();
     }
 
+    @Override
     public GoodsDto getGoodsById(int id) {
         return goodsService.getGoodsById(id);
     }
