@@ -7,8 +7,8 @@ import repository.GoodsRepository;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 public class GoodsService {
@@ -26,18 +26,10 @@ public class GoodsService {
 
     public List<GoodsDto> getGoods() {
         List<GoodsEntity> goodsEntities = goodsRepository.findAll();
-        List<GoodsDto> goodsDtoList = new ArrayList<GoodsDto>();
 
-        for (GoodsEntity goodsEntity: goodsEntities) {
-            GoodsDto goodsDto = entityToDto(goodsEntity);
-
-            goodsDtoList.add(goodsDto);
-        }
-
-        return goodsDtoList;
-
-//        return goodsEntities.stream()
-//                .map(goodsEntity -> entityToDto(goodsEntity));
+        return goodsEntities.stream()
+                .map(this::entityToDto)
+                .collect(Collectors.toList());
     }
 
     public GoodsDto getGoodsById(int id) {
