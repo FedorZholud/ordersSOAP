@@ -1,6 +1,7 @@
 package app.impl;
 
 import app.OrdersSOAPService;
+import entity.OrdersListEntity;
 import model.GoodsDto;
 import model.OrdersListDto;
 import service.GoodsService;
@@ -32,7 +33,12 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     }
 
     @Override
-    public List<OrdersListDto> getOrdersList() {
-        return ordersListService.getOrdersList();
+    public List<OrdersListDto> getOrdersList(int orderNumber) {
+        return ordersListService.getOrdersList(orderNumber);
+    }
+
+    @Override
+    public int createOrdersList(int orderNumber, int goodsId, int amount) {
+        return ordersListService.createOrdersListAsId(orderNumber, goodsId, amount);
     }
 }

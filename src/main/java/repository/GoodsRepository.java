@@ -11,7 +11,7 @@ public interface GoodsRepository {
     void create(GoodsEntity goods);
 
     //read
-    GoodsEntity read(int id);
+    GoodsEntity find(int id);
 
     //read all
     List<GoodsEntity> findAll();

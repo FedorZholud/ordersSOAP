@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class OrdersListEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private int id;
 
@@ -31,10 +31,6 @@ public class OrdersListEntity implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getOrderNumber() {
         return orderNumber;
     }
@@ -55,7 +51,7 @@ public class OrdersListEntity implements Serializable {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -71,7 +67,7 @@ public class OrdersListEntity implements Serializable {
         return priceSum;
     }
 
-    public void setPriceSum(int priceSum) {
+    public void setPriceSum(double priceSum) {
         this.priceSum = priceSum;
     }
 }

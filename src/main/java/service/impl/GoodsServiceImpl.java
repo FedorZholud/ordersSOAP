@@ -36,7 +36,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public GoodsDto getGoodsById(int id) {
-        GoodsEntity goodsEntity = goodsRepository.read(id);
+        GoodsEntity goodsEntity = goodsRepository.find(id);
 
         return entityToDto(goodsEntity);
     }

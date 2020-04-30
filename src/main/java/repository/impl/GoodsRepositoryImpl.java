@@ -20,7 +20,7 @@ public class GoodsRepositoryImpl implements GoodsRepository {
     }
 
     @Override
-    public GoodsEntity read(int id) {
+    public GoodsEntity find(int id) {
         GoodsEntity goods = em.find(GoodsEntity.class, id);
         return goods;
     }

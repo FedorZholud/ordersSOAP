@@ -7,8 +7,10 @@ import java.util.List;
 
 public interface OrdersListService {
 
-    void createOrdersList(OrdersListEntity ordersList);
+    OrdersListDto createOrdersList(int orderNumber, int goodsId, int amount);
 
-    List<OrdersListDto> getOrdersList();
+    int createOrdersListAsId(int orderNumber, int goodsId, int amount);
+
+    List<OrdersListDto> getOrdersList(int orderNumber);
 
 }
