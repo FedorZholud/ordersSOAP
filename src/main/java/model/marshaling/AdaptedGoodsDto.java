@@ -1,6 +1,9 @@
 package model.marshaling;
 
-
+/**
+ * @author Fedor Zholud
+ *
+ */
 
 public class AdaptedGoodsDto {
 

@@ -3,11 +3,17 @@ package entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 @Entity
 @Table(name = "goods")
 public class GoodsEntity implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private int id;
 
@@ -15,14 +21,10 @@ public class GoodsEntity implements Serializable {
     private String name;
 
     @Column(name = "price")
-    private Double price;
+    private double price;
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -33,7 +35,7 @@ public class GoodsEntity implements Serializable {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 

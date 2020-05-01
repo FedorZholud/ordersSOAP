@@ -7,6 +7,10 @@ import javax.ejb.Stateless;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
 
 @Stateless
 public class GoodsRepositoryImpl implements GoodsRepository {
@@ -20,7 +24,7 @@ public class GoodsRepositoryImpl implements GoodsRepository {
     }
 
     @Override
-    public GoodsEntity read(int id) {
+    public GoodsEntity find(int id) {
         GoodsEntity goods = em.find(GoodsEntity.class, id);
         return goods;
     }

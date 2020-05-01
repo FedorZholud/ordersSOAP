@@ -3,12 +3,17 @@ package entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 @Entity
 @Table(name = "orders_list")
 public class OrdersListEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private int id;
 
@@ -19,20 +24,16 @@ public class OrdersListEntity implements Serializable {
     private String goodsName;
 
     @Column(name = "price")
-    private int price;
+    private double price;
 
     @Column(name = "amount")
     private int amount;
 
     @Column(name = "price_sum")
-    private int priceSum;
+    private double priceSum;
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getOrderNumber() {
@@ -51,11 +52,11 @@ public class OrdersListEntity implements Serializable {
         this.goodsName = goodsName;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -67,11 +68,11 @@ public class OrdersListEntity implements Serializable {
         this.amount = amount;
     }
 
-    public int getPriceSum() {
+    public double getPriceSum() {
         return priceSum;
     }
 
-    public void setPriceSum(int priceSum) {
+    public void setPriceSum(double priceSum) {
         this.priceSum = priceSum;
     }
 }

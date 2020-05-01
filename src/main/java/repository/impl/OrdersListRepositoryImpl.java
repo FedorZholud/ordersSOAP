@@ -9,6 +9,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 @Stateless
 public class OrdersListRepositoryImpl implements OrdersListRepository {
 
@@ -16,19 +21,21 @@ public class OrdersListRepositoryImpl implements OrdersListRepository {
     private EntityManager em;
 
     @Override
-    public void create(OrdersListEntity ordersList) {
+    public OrdersListEntity create(OrdersListEntity ordersList) {
         em.persist(ordersList);
+
+        return ordersList;
     }
 
     @Override
-    public OrdersListEntity read(int id) {
+    public OrdersListEntity find(int id) {
         OrdersListEntity ordersList = em.find(OrdersListEntity.class, id);
         return ordersList;
     }
 
     @Override
-    public List<OrdersListEntity> findAll() {
-        TypedQuery<OrdersListEntity> query = em.createQuery("select o from OrdersListEntity o", OrdersListEntity.class);
+    public List<OrdersListEntity> findAll(int orderNumber) {
+        TypedQuery<OrdersListEntity> query = em.createQuery("select o from OrdersListEntity o where o.orderNumber = :orderNumber", OrdersListEntity.class).setParameter("orderNumber", orderNumber);
         List<OrdersListEntity> ordersList = query.getResultList();
         return ordersList;
     }

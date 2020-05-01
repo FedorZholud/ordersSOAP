@@ -4,16 +4,21 @@ import entity.OrdersListEntity;
 
 import java.util.List;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 public interface OrdersListRepository {
 
     //create
-    void create(OrdersListEntity ordersList);
+    OrdersListEntity create(OrdersListEntity ordersList);
 
     //read
-    OrdersListEntity read(int id);
+    OrdersListEntity find(int id);
 
     //read all
-    List<OrdersListEntity> findAll();
+    List<OrdersListEntity> findAll(int orderNumber);
 
     //update
     void update(OrdersListEntity ordersList);
