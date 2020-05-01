@@ -10,6 +10,11 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT)
 public interface OrdersSOAPService {
@@ -28,4 +33,7 @@ public interface OrdersSOAPService {
             @WebParam(name = "orderNumber") int orderNumber,
             @WebParam(name = "goodsId") int goodsId,
             @WebParam(name = "amount") int amount);
+
+    @WebMethod
+    @WebResult(name = "ordersListId") int deleteOrdersList(@WebParam(name = "ordersListId") int id);
 }

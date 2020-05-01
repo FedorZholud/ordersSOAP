@@ -1,5 +1,10 @@
 package model.marshaling;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 public class AdaptedOrdersListDto {
 
     private int id;

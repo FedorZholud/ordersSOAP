@@ -4,6 +4,11 @@ import entity.OrdersListEntity;
 
 import java.util.List;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 public interface OrdersListRepository {
 
     //create

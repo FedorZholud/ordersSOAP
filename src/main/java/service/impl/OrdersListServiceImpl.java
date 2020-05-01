@@ -12,6 +12,11 @@ import javax.ejb.Stateless;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 @Stateless
 public class OrdersListServiceImpl implements OrdersListService {
 
@@ -65,5 +70,13 @@ public class OrdersListServiceImpl implements OrdersListService {
         return ordersListEntities.stream()
                 .map(this::entityToDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public int deleteOrdersList(int id) {
+        OrdersListEntity ordersListEntity = ordersListRepository.find(id);
+        ordersListRepository.delete(ordersListEntity);
+
+        return ordersListEntity.getId();
     }
 }

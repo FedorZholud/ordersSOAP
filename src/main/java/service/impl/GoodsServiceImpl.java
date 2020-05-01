@@ -11,6 +11,11 @@ import javax.ejb.Stateless;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 @Stateless
 public class GoodsServiceImpl implements GoodsService {
 

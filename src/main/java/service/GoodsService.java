@@ -5,6 +5,11 @@ import model.GoodsDto;
 
 import java.util.List;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 public interface GoodsService {
 
     List<GoodsDto> getGoods();

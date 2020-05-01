@@ -7,6 +7,10 @@ import javax.ejb.Stateless;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
 
 @Stateless
 public class GoodsRepositoryImpl implements GoodsRepository {

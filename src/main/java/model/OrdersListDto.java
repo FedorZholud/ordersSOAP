@@ -5,6 +5,11 @@ import model.marshaling.OrdersListDtoAdapter;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 @XmlRootElement
 @XmlJavaTypeAdapter(OrdersListDtoAdapter.class)
 public class OrdersListDto {

@@ -1,5 +1,10 @@
 package model.marshaling;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 import model.GoodsDto;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;

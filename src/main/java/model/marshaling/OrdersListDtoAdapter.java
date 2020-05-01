@@ -2,6 +2,11 @@ package model.marshaling;
 
 import model.OrdersListDto;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 public class OrdersListDtoAdapter extends XmlAdapter<AdaptedOrdersListDto, OrdersListDto> {

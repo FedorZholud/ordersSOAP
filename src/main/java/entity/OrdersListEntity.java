@@ -3,6 +3,11 @@ package entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 @Entity
 @Table(name = "orders_list")
 public class OrdersListEntity implements Serializable {
