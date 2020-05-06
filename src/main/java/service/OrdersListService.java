@@ -20,4 +20,6 @@ public interface OrdersListService {
 
     int deleteOrdersList(int id);
 
+    int updateOrdersList(int id, int amount);
+
 }

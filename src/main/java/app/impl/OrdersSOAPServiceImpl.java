@@ -47,6 +47,11 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     }
 
     @Override
+    public int updateOrdersList(int ordersListId, int amount) {
+        return ordersListService.updateOrdersList(ordersListId, amount);
+    }
+
+    @Override
     public int deleteOrdersList(int id) {
         return ordersListService.deleteOrdersList(id);
     }

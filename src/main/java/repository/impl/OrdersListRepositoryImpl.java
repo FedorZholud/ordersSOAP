@@ -1,13 +1,8 @@
 package repository.impl;
 
 import entity.OrdersListEntity;
-import repository.OrdersListRepository;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import java.util.List;
 
 /**
  * @author Fedor Zholud
@@ -15,7 +10,7 @@ import java.util.List;
  */
 
 @Stateless
-public class OrdersListRepositoryImpl extends RepositoryAbstract<OrdersListEntity> {
+public class OrdersListRepositoryImpl extends AbstractRepository<OrdersListEntity> {
 
     OrdersListRepositoryImpl() {
         super(OrdersListEntity.class);
