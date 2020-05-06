@@ -5,6 +5,8 @@ import entity.OrdersListEntity;
 import model.OrdersListDto;
 import repository.GoodsRepository;
 import repository.OrdersListRepository;
+import repository.impl.GoodsRepositoryImpl;
+import repository.impl.OrdersListRepositoryImpl;
 import service.OrdersListService;
 
 import javax.ejb.EJB;
@@ -21,10 +23,10 @@ import java.util.stream.Collectors;
 public class OrdersListServiceImpl implements OrdersListService {
 
     @EJB
-    GoodsRepository goodsRepository;
+    GoodsRepositoryImpl goodsRepository;
 
     @EJB
-    OrdersListRepository ordersListRepository;
+    OrdersListRepositoryImpl ordersListRepository;
 
     private OrdersListDto entityToDto(OrdersListEntity ordersListEntity) {
         return OrdersListDto.builder()

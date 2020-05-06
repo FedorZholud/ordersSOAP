@@ -9,7 +9,7 @@ import java.util.List;
  * @author Fedor Zholud
  *
  */
-
+@Deprecated
 public interface GoodsRepository {
 
     //create

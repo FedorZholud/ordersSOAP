@@ -9,8 +9,9 @@ import java.io.Serializable;
  */
 
 @Entity
+@NamedQuery(name = "entity.OrdersListEntity.findAll", query = "select o from OrdersListEntity o where o.orderNumber = :param")
 @Table(name = "orders_list")
-public class OrdersListEntity implements Serializable {
+public class OrdersListEntity extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
