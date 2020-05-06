@@ -35,5 +35,10 @@ public interface OrdersSOAPService {
             @WebParam(name = "amount") int amount);
 
     @WebMethod
+    @WebResult(name = "ordersListId") int updateOrdersList(
+            @WebParam(name = "ordersListId") int ordersListId,
+            @WebParam(name = "amount") int amount);
+
+    @WebMethod
     @WebResult(name = "ordersListId") int deleteOrdersList(@WebParam(name = "ordersListId") int id);
 }

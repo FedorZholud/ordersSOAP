@@ -5,7 +5,7 @@ import entity.GoodsEntity;
 
 import java.util.List;
 
-public interface Repository<T> {
+public interface Repository<T extends BaseEntity> {
 
     //create
     void create(T entity);

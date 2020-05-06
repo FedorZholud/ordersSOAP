@@ -81,4 +81,16 @@ public class OrdersListServiceImpl implements OrdersListService {
 
         return ordersListEntity.getId();
     }
+
+    @Override
+    public int updateOrdersList(int id, int amount) {
+        OrdersListEntity ordersListEntity = ordersListRepository.find(id);
+        ordersListEntity.setAmount(amount);
+        ordersListEntity.setPriceSum(ordersListEntity.getPrice() * amount);
+
+        ordersListRepository.update(ordersListEntity);
+
+        return ordersListEntity.getId();
+    }
+
 }

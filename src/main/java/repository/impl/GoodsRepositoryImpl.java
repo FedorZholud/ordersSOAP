@@ -1,11 +1,8 @@
 package repository.impl;
 
 import entity.GoodsEntity;
-import repository.GoodsRepository;
 
 import javax.ejb.Stateless;
-import javax.persistence.*;
-import java.util.List;
 
 /**
  * @author Fedor Zholud
@@ -13,7 +10,7 @@ import java.util.List;
  */
 
 @Stateless
-public class GoodsRepositoryImpl extends RepositoryAbstract<GoodsEntity> {
+public class GoodsRepositoryImpl extends AbstractRepository<GoodsEntity> {
 
     public GoodsRepositoryImpl() {
         super(GoodsEntity.class);

@@ -9,11 +9,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public abstract class RepositoryAbstract<T extends BaseEntity> implements Repository<T> {
+public abstract class AbstractRepository<T extends BaseEntity> implements Repository<T> {
 
     private Class<T> entityClass;
 
-    public RepositoryAbstract(Class<T> entityClass) {
+    public AbstractRepository(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
