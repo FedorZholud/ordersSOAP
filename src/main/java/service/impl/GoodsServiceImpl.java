@@ -4,6 +4,7 @@ package service.impl;
 import entity.GoodsEntity;
 import model.GoodsDto;
 import repository.GoodsRepository;
+import repository.impl.GoodsRepositoryImpl;
 import service.GoodsService;
 
 import javax.ejb.EJB;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 public class GoodsServiceImpl implements GoodsService {
 
     @EJB
-    GoodsRepository goodsRepository;
+    GoodsRepositoryImpl goodsRepository;
 
     private GoodsDto entityToDto(GoodsEntity goodsEntity) {
         return GoodsDto.builder()

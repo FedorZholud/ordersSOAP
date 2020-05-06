@@ -8,7 +8,7 @@ import java.util.List;
  * @author Fedor Zholud
  *
  */
-
+@Deprecated
 public interface OrdersListRepository {
 
     //create

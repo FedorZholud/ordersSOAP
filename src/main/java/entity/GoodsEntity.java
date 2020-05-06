@@ -9,8 +9,9 @@ import java.io.Serializable;
  */
 
 @Entity
+@NamedQuery(name = "entity.GoodsEntity.findAll", query = "select g from GoodsEntity g")
 @Table(name = "goods")
-public class GoodsEntity implements Serializable {
+public class GoodsEntity extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
