@@ -2,6 +2,7 @@ package service.impl;
 
 import entity.GoodsEntity;
 import entity.OrdersListEntity;
+import mapper.impl.OrdersListMapper;
 import model.OrdersListDto;
 import repository.GoodsRepository;
 import repository.OrdersListRepository;
@@ -28,21 +29,12 @@ public class OrdersListServiceImpl implements OrdersListService {
     @EJB
     OrdersListRepositoryImpl ordersListRepository;
 
-    private OrdersListDto entityToDto(OrdersListEntity ordersListEntity) {
-        return OrdersListDto.builder()
-                .setId(ordersListEntity.getId())
-                .setOrderNumber(ordersListEntity.getOrderNumber())
-                .setGoodsName(ordersListEntity.getGoodsName())
-                .setPrice(ordersListEntity.getPrice())
-                .setAmount(ordersListEntity.getAmount())
-                .setPriceSum(ordersListEntity.getPriceSum())
-                .build();
-    }
-
+    //@EJB
+    OrdersListMapper ordersListMapper = new OrdersListMapper();
 
     @Override
     public OrdersListDto createOrdersList(int orderNumber, int goodsId, int amount) {
-        return entityToDto(createOrdersListEntity(orderNumber, goodsId, amount));
+        return ordersListMapper.entityToDto(createOrdersListEntity(orderNumber, goodsId, amount));
     }
 
     @Override
@@ -70,7 +62,7 @@ public class OrdersListServiceImpl implements OrdersListService {
         List<OrdersListEntity> ordersListEntities = ordersListRepository.findAll(orderNumber);
 
         return ordersListEntities.stream()
-                .map(this::entityToDto)
+                .map(ordersListEntity -> ordersListMapper.entityToDto(ordersListEntity))
                 .collect(Collectors.toList());
     }
 

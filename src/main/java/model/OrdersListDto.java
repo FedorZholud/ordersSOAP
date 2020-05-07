@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlRootElement
 @XmlJavaTypeAdapter(OrdersListDtoAdapter.class)
-public class OrdersListDto {
+public class OrdersListDto extends BaseDto {
 
     private final int id;
     private final int orderNumber;
