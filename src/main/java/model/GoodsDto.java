@@ -1,5 +1,6 @@
 package model;
 
+import entity.BaseEntity;
 import model.marshaling.GoodsDtoAdapter;
 
 
@@ -13,7 +14,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlRootElement
 @XmlJavaTypeAdapter(GoodsDtoAdapter.class)
-public class GoodsDto {
+public class GoodsDto extends BaseDto {
 
     private final int id;
     private final String name;

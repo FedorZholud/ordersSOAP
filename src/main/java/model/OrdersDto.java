@@ -15,7 +15,7 @@ import java.util.List;
 
 @XmlRootElement
 @XmlJavaTypeAdapter(OrdersDtoAdapter.class)
-public class OrdersDto {
+public class OrdersDto extends BaseDto {
 
     private final int id;
     private final int orderNumber;
