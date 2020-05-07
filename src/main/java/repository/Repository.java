@@ -5,6 +5,11 @@ import entity.GoodsEntity;
 
 import java.util.List;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 public interface Repository<T extends BaseEntity> {
 
     //create

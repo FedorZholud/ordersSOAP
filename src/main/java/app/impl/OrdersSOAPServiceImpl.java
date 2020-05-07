@@ -2,9 +2,12 @@ package app.impl;
 
 import app.OrdersSOAPService;
 import model.GoodsDto;
+import model.OrdersDto;
 import model.OrdersListDto;
 import service.GoodsService;
 import service.OrdersListService;
+import service.OrdersService;
+import service.impl.OrdersServiceImpl;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -25,6 +28,9 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
 
     @EJB
     OrdersListService ordersListService;
+
+    @EJB
+    OrdersService ordersService;
 
     @Override
     public List<GoodsDto> getAllGoods() {
@@ -54,5 +60,10 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     @Override
     public int deleteOrdersList(int id) {
         return ordersListService.deleteOrdersList(id);
+    }
+
+    @Override
+    public OrdersDto getOrder(int id) {
+        return ordersService.getOrder(id);
     }
 }

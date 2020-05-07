@@ -9,6 +9,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * @author Fedor Zholud
+ *
+ */
+
 public abstract class AbstractRepository<T extends BaseEntity> implements Repository<T> {
 
     private Class<T> entityClass;

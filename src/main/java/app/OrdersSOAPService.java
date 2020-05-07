@@ -1,6 +1,7 @@
 package app;
 
 import model.GoodsDto;
+import model.OrdersDto;
 import model.OrdersListDto;
 
 import javax.jws.WebMethod;
@@ -41,4 +42,7 @@ public interface OrdersSOAPService {
 
     @WebMethod
     @WebResult(name = "ordersListId") int deleteOrdersList(@WebParam(name = "ordersListId") int id);
+
+    @WebMethod
+    OrdersDto getOrder(@WebParam(name = "id") int id);
 }
