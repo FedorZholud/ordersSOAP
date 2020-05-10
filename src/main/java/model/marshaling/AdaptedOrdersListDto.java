@@ -7,26 +7,26 @@ package model.marshaling;
 
 public class AdaptedOrdersListDto {
 
-    private int id;
-    private int orderNumber;
+    private long id;
+    private long orderNumber;
     private String goodsName;
     private double price;
     private int amount;
     private double priceSum;
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setOrderNumber(int orderNumber) {
+    public void setOrderNumber(long orderNumber) {
         this.orderNumber = orderNumber;
     }
 
-    public int getOrderNumber() {
+    public long getOrderNumber() {
         return orderNumber;
     }
 

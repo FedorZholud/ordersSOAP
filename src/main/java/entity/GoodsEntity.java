@@ -16,7 +16,7 @@ public class GoodsEntity extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
-    private int id;
+    private long id;
 
     @Column(name = "name")
     private String name;
@@ -24,7 +24,7 @@ public class GoodsEntity extends BaseEntity implements Serializable {
     @Column(name = "price")
     private double price;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

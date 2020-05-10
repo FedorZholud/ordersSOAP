@@ -4,6 +4,7 @@ package entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -17,11 +18,8 @@ public class OrdersEntity extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id")
-    private int id;
-
     @Column(name = "order_number")
-    private int orderNumber;
+    private long orderNumber;
 
     @Column(name = "customer")
     private String customer;
@@ -29,15 +27,7 @@ public class OrdersEntity extends BaseEntity implements Serializable {
     @Column(name = "order_time")
     private Timestamp orderTime;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
-    public int getOrderNumber() {
+    public long getOrderNumber() {
         return orderNumber;
     }
 

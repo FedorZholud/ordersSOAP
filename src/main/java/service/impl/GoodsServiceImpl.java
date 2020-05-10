@@ -3,16 +3,12 @@ package service.impl;
 
 import entity.GoodsEntity;
 import mapper.Mapper;
-import mapper.impl.GoodsMapper;
 import model.GoodsDto;
-import repository.GoodsRepository;
-import repository.impl.GoodsRepositoryImpl;
+import repository.impl.GoodsRepository;
 import service.GoodsService;
 
-import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Singleton;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,10 +21,10 @@ import java.util.stream.Collectors;
 public class GoodsServiceImpl implements GoodsService {
 
     @EJB
-    GoodsRepositoryImpl goodsRepository;
+    GoodsRepository goodsRepository;
 
-    //@EJB
-    GoodsMapper goodsMapper = new GoodsMapper();
+    @EJB(beanName = "GoodsMapper")
+    Mapper<GoodsEntity, GoodsDto> goodsMapper;
 
     @Override
     public List<GoodsDto> getGoods() {
@@ -40,7 +36,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public GoodsDto getGoodsById(int id) {
+    public GoodsDto getGoodsById(long id) {
         GoodsEntity goodsEntity = goodsRepository.find(id);
 
         return goodsMapper.entityToDto(goodsEntity);

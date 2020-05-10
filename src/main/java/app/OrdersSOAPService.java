@@ -24,25 +24,28 @@ public interface OrdersSOAPService {
     List<GoodsDto> getAllGoods();
 
     @WebMethod
-    GoodsDto getGoodsById(@WebParam(name = "id") int id);
+    GoodsDto getGoodsById(@WebParam(name = "id") long id);
 
     @WebMethod
-    List<OrdersListDto> getOrdersList(@WebParam(name = "orderNumber") int orderNumber);
+    List<OrdersListDto> getOrdersList(@WebParam(name = "orderNumber") long orderNumber);
 
     @WebMethod
-    @WebResult(name = "ordersListId") int createOrdersList(
-            @WebParam(name = "orderNumber") int orderNumber,
-            @WebParam(name = "goodsId") int goodsId,
+    @WebResult(name = "ordersListId") long createOrdersList(
+            @WebParam(name = "orderNumber") long orderNumber,
+            @WebParam(name = "goodsId") long goodsId,
             @WebParam(name = "amount") int amount);
 
     @WebMethod
-    @WebResult(name = "ordersListId") int updateOrdersList(
-            @WebParam(name = "ordersListId") int ordersListId,
+    @WebResult(name = "ordersListId") long updateOrdersList(
+            @WebParam(name = "ordersListId") long ordersListId,
             @WebParam(name = "amount") int amount);
 
     @WebMethod
-    @WebResult(name = "ordersListId") int deleteOrdersList(@WebParam(name = "ordersListId") int id);
+    @WebResult(name = "ordersListId") long deleteOrdersList(@WebParam(name = "ordersListId") long id);
 
     @WebMethod
-    OrdersDto getOrder(@WebParam(name = "id") int id);
+    OrdersDto getOrder(@WebParam(name = "orderNumber") long orderNumber);
+
+    @WebMethod
+    @WebResult(name = "orderNumber") long createOrder(@WebParam(name = "customer") String customer);
 }
