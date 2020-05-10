@@ -9,5 +9,9 @@ import model.OrdersDto;
 
 public interface OrdersService {
 
-    OrdersDto getOrder(int id);
+    OrdersDto getOrder(long orderNumber);
+
+    long createOrderAsId(String customer);
+
+    OrdersDto createOrder(String customer);
 }

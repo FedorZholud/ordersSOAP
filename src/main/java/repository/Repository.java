@@ -16,13 +16,13 @@ public interface Repository<T extends BaseEntity> {
     void create(T entity);
 
     //find
-    T find(int id);
+    T find(long id);
 
     //find all
     List<T> findAll();
 
     //find all with parameter
-    List<T> findAll(int param);
+    List<T> findAll(long param);
 
     //update
     void update(T entity);

@@ -31,7 +31,7 @@ public abstract class AbstractRepository<T extends BaseEntity> implements Reposi
     }
 
     @Override
-    public T find(int id) {
+    public T find(long id) {
         return em.find(entityClass, id);
     }
 
@@ -42,7 +42,7 @@ public abstract class AbstractRepository<T extends BaseEntity> implements Reposi
     }
 
     @Override
-    public List<T> findAll(int param) {
+    public List<T> findAll(long param) {
         TypedQuery<T> query = em.createNamedQuery(entityClass.getName() + ".findAll", entityClass).setParameter("param", param);
         return query.getResultList();
     }

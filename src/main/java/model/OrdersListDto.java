@@ -14,18 +14,18 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlJavaTypeAdapter(OrdersListDtoAdapter.class)
 public class OrdersListDto extends BaseDto {
 
-    private final int id;
-    private final int orderNumber;
+    private final long id;
+    private final long orderNumber;
     private final String goodsName;
     private final double price;
     private final int amount;
     private final double priceSum;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public int getOrderNumber() {
+    public long getOrderNumber() {
         return orderNumber;
     }
 
@@ -50,7 +50,7 @@ public class OrdersListDto extends BaseDto {
         this(0, 0, null, 0, 0, 0);
     }
 
-    private OrdersListDto(int id, int orderNumber, String goodsName, double price, int amount, double priceSum) {
+    private OrdersListDto(long id, long orderNumber, String goodsName, double price, int amount, double priceSum) {
         this.id = id;
         this.orderNumber = orderNumber;
         this.goodsName = goodsName;
@@ -65,8 +65,8 @@ public class OrdersListDto extends BaseDto {
 
     public static class OrdersListDtoBuilder {
 
-        private int id;
-        private int orderNumber;
+        private long id;
+        private long orderNumber;
         private String goodsName;
         private double price;
         private int amount;
@@ -76,12 +76,12 @@ public class OrdersListDto extends BaseDto {
 
         }
 
-        public OrdersListDtoBuilder setId(int id) {
+        public OrdersListDtoBuilder setId(long id) {
             this.id = id;
             return this;
         }
 
-        public OrdersListDtoBuilder setOrderNumber(int orderNumber) {
+        public OrdersListDtoBuilder setOrderNumber(long orderNumber) {
             this.orderNumber = orderNumber;
             return this;
         }

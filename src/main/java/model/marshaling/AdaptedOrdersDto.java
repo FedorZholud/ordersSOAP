@@ -2,7 +2,7 @@ package model.marshaling;
 
 import model.OrdersListDto;
 
-import java.sql.Timestamp;
+
 import java.util.List;
 
 /**
@@ -12,17 +12,12 @@ import java.util.List;
 
 public class AdaptedOrdersDto {
 
-    private int id;
-    private int orderNumber;
+    private long orderNumber;
     private String customer;
     private String orderTime;
     private List<OrdersListDto> orderList;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setOrderNumber(int orderNumber) {
+    public void setOrderNumber(long orderNumber) {
         this.orderNumber = orderNumber;
     }
 
@@ -38,11 +33,7 @@ public class AdaptedOrdersDto {
         this.orderList = orderList;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public int getOrderNumber() {
+    public long getOrderNumber() {
         return orderNumber;
     }
 

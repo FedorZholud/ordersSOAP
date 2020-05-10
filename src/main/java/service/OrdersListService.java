@@ -12,14 +12,14 @@ import java.util.List;
 
 public interface OrdersListService {
 
-    OrdersListDto createOrdersList(int orderNumber, int goodsId, int amount);
+    OrdersListDto createOrdersList(long orderNumber, long goodsId, int amount);
 
-    int createOrdersListAsId(int orderNumber, int goodsId, int amount);
+    long createOrdersListAsId(long orderNumber, long goodsId, int amount);
 
-    List<OrdersListDto> getOrdersList(int orderNumber);
+    List<OrdersListDto> getOrdersList(long orderNumber);
 
-    int deleteOrdersList(int id);
+    long deleteOrdersList(long id);
 
-    int updateOrdersList(int id, int amount);
+    long updateOrdersList(long id, int amount);
 
 }

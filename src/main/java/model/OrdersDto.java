@@ -5,7 +5,7 @@ import model.marshaling.OrdersDtoAdapter;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,17 +17,12 @@ import java.util.List;
 @XmlJavaTypeAdapter(OrdersDtoAdapter.class)
 public class OrdersDto extends BaseDto {
 
-    private final int id;
-    private final int orderNumber;
+    private final long orderNumber;
     private final String customer;
-    private final Timestamp orderTime;
+    private final Date orderTime;
     private final List<OrdersListDto> orderList;
 
-    public int getId() {
-        return id;
-    }
-
-    public int getOrderNumber() {
+    public long getOrderNumber() {
         return orderNumber;
     }
 
@@ -35,7 +30,7 @@ public class OrdersDto extends BaseDto {
         return customer;
     }
 
-    public Timestamp getOrderTime() {
+    public Date getOrderTime() {
         return orderTime;
     }
 
@@ -45,16 +40,14 @@ public class OrdersDto extends BaseDto {
 
     @SuppressWarnings("unused")
     private OrdersDto() {
-        this(0, 0, null, null, null);
+        this(0, null, null, null);
     }
 
     private OrdersDto(
-            int id,
-            int orderNumber,
+            long orderNumber,
             String customer,
-            Timestamp orderTime,
+            Date orderTime,
             List<OrdersListDto> orderList) {
-        this.id = id;
         this.orderNumber = orderNumber;
         this.customer = customer;
         this.orderTime = orderTime;
@@ -67,22 +60,16 @@ public class OrdersDto extends BaseDto {
 
     public static class OrdersDtoBuilder {
 
-        private int id;
-        private int orderNumber;
+        private long orderNumber;
         private String customer;
-        private Timestamp orderTime;
+        private Date orderTime;
         private List<OrdersListDto> orderList;
 
         private OrdersDtoBuilder() {
 
         }
 
-        public OrdersDtoBuilder setId(int id) {
-            this.id = id;
-            return this;
-        }
-
-        public OrdersDtoBuilder setOrderNumber(int orderNumber) {
+        public OrdersDtoBuilder setOrderNumber(long orderNumber) {
             this.orderNumber = orderNumber;
             return this;
         }
@@ -92,7 +79,7 @@ public class OrdersDto extends BaseDto {
             return this;
         }
 
-        public OrdersDtoBuilder setOrderTime(Timestamp orderTime) {
+        public OrdersDtoBuilder setOrderTime(Date orderTime) {
             this.orderTime = orderTime;
             return this;
         }
@@ -103,7 +90,7 @@ public class OrdersDto extends BaseDto {
         }
 
         public OrdersDto build() {
-            return new OrdersDto(this.id, this.orderNumber, this.customer, this.orderTime, this.orderList);
+            return new OrdersDto(this.orderNumber, this.customer, this.orderTime, this.orderList);
         }
     }
 }

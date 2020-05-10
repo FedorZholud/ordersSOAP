@@ -3,6 +3,7 @@ package model.marshaling;
 import model.OrdersDto;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
@@ -18,10 +19,9 @@ public class OrdersDtoAdapter extends XmlAdapter<AdaptedOrdersDto, OrdersDto> {
     @Override
     public OrdersDto unmarshal(AdaptedOrdersDto adaptedOrdersDto) throws Exception {
         return OrdersDto.builder()
-                .setId(adaptedOrdersDto.getId())
                 .setOrderNumber(adaptedOrdersDto.getOrderNumber())
                 .setCustomer(adaptedOrdersDto.getCustomer())
-                .setOrderTime((Timestamp) dateFormat.parse(adaptedOrdersDto.getOrderTime()))
+                .setOrderTime(dateFormat.parse(adaptedOrdersDto.getOrderTime()))
                 .setOrderList(adaptedOrdersDto.getOrderList())
                 .build();
     }
@@ -29,7 +29,6 @@ public class OrdersDtoAdapter extends XmlAdapter<AdaptedOrdersDto, OrdersDto> {
     @Override
     public AdaptedOrdersDto marshal(OrdersDto ordersDto) throws Exception {
         AdaptedOrdersDto adaptedOrdersDto = new AdaptedOrdersDto();
-        adaptedOrdersDto.setId(ordersDto.getId());
         adaptedOrdersDto.setOrderNumber(ordersDto.getOrderNumber());
         adaptedOrdersDto.setCustomer(ordersDto.getCustomer());
         adaptedOrdersDto.setOrderTime(dateFormat.format(ordersDto.getOrderTime()));

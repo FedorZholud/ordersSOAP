@@ -12,7 +12,7 @@ import javax.ejb.Stateless;
 @Stateless
 public class OrdersRepository extends AbstractRepository<OrdersEntity>{
 
-    OrdersRepository() {
+    public OrdersRepository() {
         super(OrdersEntity.class);
     }
 

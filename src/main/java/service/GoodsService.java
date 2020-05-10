@@ -14,5 +14,5 @@ public interface GoodsService {
 
     List<GoodsDto> getGoods();
 
-    GoodsDto getGoodsById(int id);
+    GoodsDto getGoodsById(long id);
 }

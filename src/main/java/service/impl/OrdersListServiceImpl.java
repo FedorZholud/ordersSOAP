@@ -2,12 +2,10 @@ package service.impl;
 
 import entity.GoodsEntity;
 import entity.OrdersListEntity;
-import mapper.impl.OrdersListMapper;
+import mapper.Mapper;
 import model.OrdersListDto;
-import repository.GoodsRepository;
-import repository.OrdersListRepository;
-import repository.impl.GoodsRepositoryImpl;
-import repository.impl.OrdersListRepositoryImpl;
+import repository.impl.GoodsRepository;
+import repository.impl.OrdersListRepository;
 import service.OrdersListService;
 
 import javax.ejb.EJB;
@@ -24,25 +22,25 @@ import java.util.stream.Collectors;
 public class OrdersListServiceImpl implements OrdersListService {
 
     @EJB
-    GoodsRepositoryImpl goodsRepository;
+    GoodsRepository goodsRepository;
 
     @EJB
-    OrdersListRepositoryImpl ordersListRepository;
+    OrdersListRepository ordersListRepository;
 
-    //@EJB
-    OrdersListMapper ordersListMapper = new OrdersListMapper();
+    @EJB(beanName = "OrdersListMapper")
+    Mapper<OrdersListEntity, OrdersListDto> ordersListMapper;
 
     @Override
-    public OrdersListDto createOrdersList(int orderNumber, int goodsId, int amount) {
+    public OrdersListDto createOrdersList(long orderNumber, long goodsId, int amount) {
         return ordersListMapper.entityToDto(createOrdersListEntity(orderNumber, goodsId, amount));
     }
 
     @Override
-    public int createOrdersListAsId(int orderNumber, int goodsId, int amount) {
+    public long createOrdersListAsId(long orderNumber, long goodsId, int amount) {
         return createOrdersListEntity(orderNumber, goodsId, amount).getId();
     }
 
-    private OrdersListEntity createOrdersListEntity(int orderNumber, int goodsId, int amount) {
+    private OrdersListEntity createOrdersListEntity(long orderNumber, long goodsId, int amount) {
         GoodsEntity goodsEntity = goodsRepository.find(goodsId);
 
         OrdersListEntity ordersListEntity = new OrdersListEntity();
@@ -58,7 +56,7 @@ public class OrdersListServiceImpl implements OrdersListService {
     }
 
     @Override
-    public List<OrdersListDto> getOrdersList(int orderNumber) {
+    public List<OrdersListDto> getOrdersList(long orderNumber) {
         List<OrdersListEntity> ordersListEntities = ordersListRepository.findAll(orderNumber);
 
         return ordersListEntities.stream()
@@ -67,7 +65,7 @@ public class OrdersListServiceImpl implements OrdersListService {
     }
 
     @Override
-    public int deleteOrdersList(int id) {
+    public long deleteOrdersList(long id) {
         OrdersListEntity ordersListEntity = ordersListRepository.find(id);
         ordersListRepository.delete(ordersListEntity);
 
@@ -75,7 +73,7 @@ public class OrdersListServiceImpl implements OrdersListService {
     }
 
     @Override
-    public int updateOrdersList(int id, int amount) {
+    public long updateOrdersList(long id, int amount) {
         OrdersListEntity ordersListEntity = ordersListRepository.find(id);
         ordersListEntity.setAmount(amount);
         ordersListEntity.setPriceSum(ordersListEntity.getPrice() * amount);

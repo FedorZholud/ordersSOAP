@@ -16,10 +16,10 @@ public class OrdersListEntity extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
-    private int id;
+    private long id;
 
     @Column(name = "order_number")
-    private int orderNumber;
+    private long orderNumber;
 
     @Column(name = "goods_name")
     private String goodsName;
@@ -33,15 +33,15 @@ public class OrdersListEntity extends BaseEntity implements Serializable {
     @Column(name = "price_sum")
     private double priceSum;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public int getOrderNumber() {
+    public long getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(int orderNumber) {
+    public void setOrderNumber(long orderNumber) {
         this.orderNumber = orderNumber;
     }
 

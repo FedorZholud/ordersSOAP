@@ -7,7 +7,6 @@ import model.OrdersListDto;
 import service.GoodsService;
 import service.OrdersListService;
 import service.OrdersService;
-import service.impl.OrdersServiceImpl;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -38,32 +37,37 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     }
 
     @Override
-    public GoodsDto getGoodsById(int id) {
+    public GoodsDto getGoodsById(long id) {
         return goodsService.getGoodsById(id);
     }
 
     @Override
-    public List<OrdersListDto> getOrdersList(int orderNumber) {
+    public List<OrdersListDto> getOrdersList(long orderNumber) {
         return ordersListService.getOrdersList(orderNumber);
     }
 
     @Override
-    public int createOrdersList(int orderNumber, int goodsId, int amount) {
+    public long createOrdersList(long orderNumber, long goodsId, int amount) {
         return ordersListService.createOrdersListAsId(orderNumber, goodsId, amount);
     }
 
     @Override
-    public int updateOrdersList(int ordersListId, int amount) {
+    public long updateOrdersList(long ordersListId, int amount) {
         return ordersListService.updateOrdersList(ordersListId, amount);
     }
 
     @Override
-    public int deleteOrdersList(int id) {
+    public long deleteOrdersList(long id) {
         return ordersListService.deleteOrdersList(id);
     }
 
     @Override
-    public OrdersDto getOrder(int id) {
-        return ordersService.getOrder(id);
+    public OrdersDto getOrder(long orderNumber) {
+        return ordersService.getOrder(orderNumber);
+    }
+
+    @Override
+    public long createOrder(String customer) {
+        return ordersService.createOrderAsId(customer);
     }
 }

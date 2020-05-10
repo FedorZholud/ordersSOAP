@@ -16,11 +16,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlJavaTypeAdapter(GoodsDtoAdapter.class)
 public class GoodsDto extends BaseDto {
 
-    private final int id;
+    private final long id;
     private final String name;
     private final double price;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -37,7 +37,7 @@ public class GoodsDto extends BaseDto {
         this(0, null, 0);
     }
 
-    private GoodsDto(int id, String name, double price) {
+    private GoodsDto(long id, String name, double price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -48,7 +48,7 @@ public class GoodsDto extends BaseDto {
     }
 
     public static class GoodsDtoBuilder {
-        private int id;
+        private long id;
         private String name;
         private double price;
 
@@ -56,7 +56,7 @@ public class GoodsDto extends BaseDto {
 
         }
 
-        public GoodsDtoBuilder setId(int id) {
+        public GoodsDtoBuilder setId(long id) {
             this.id = id;
             return this;
         }
