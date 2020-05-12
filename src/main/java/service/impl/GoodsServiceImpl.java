@@ -1,10 +1,10 @@
 package service.impl;
 
 
-import entity.GoodsEntity;
-import mapper.Mapper;
-import model.GoodsDto;
-import repository.impl.GoodsRepository;
+import entity.impl.GoodsEntity;
+import mapper.jpa.EntityToDtoJpaMapper;
+import model.impl.GoodsDto;
+import repository.impl.GoodsJpaRepository;
 import service.GoodsService;
 
 import javax.ejb.EJB;
@@ -21,17 +21,17 @@ import java.util.stream.Collectors;
 public class GoodsServiceImpl implements GoodsService {
 
     @EJB
-    GoodsRepository goodsRepository;
+    GoodsJpaRepository goodsRepository;
 
-    @EJB(beanName = "GoodsMapper")
-    Mapper<GoodsEntity, GoodsDto> goodsMapper;
+    @EJB(beanName = "GoodsEntityToDtoJpaMapper")
+    EntityToDtoJpaMapper<GoodsEntity, GoodsDto> goodsEntityToDtoJpaMapper;
 
     @Override
     public List<GoodsDto> getGoods() {
         List<GoodsEntity> goodsEntities = goodsRepository.findAll();
 
         return goodsEntities.stream()
-                .map(goodsEntity -> goodsMapper.entityToDto(goodsEntity))
+                .map(goodsEntityToDtoJpaMapper::entityToDto)
                 .collect(Collectors.toList());
     }
 
@@ -39,6 +39,6 @@ public class GoodsServiceImpl implements GoodsService {
     public GoodsDto getGoodsById(long id) {
         GoodsEntity goodsEntity = goodsRepository.find(id);
 
-        return goodsMapper.entityToDto(goodsEntity);
+        return goodsEntityToDtoJpaMapper.entityToDto(goodsEntity);
     }
 }

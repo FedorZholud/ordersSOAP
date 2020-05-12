@@ -1,12 +1,12 @@
 package app.impl;
 
 import app.OrdersSOAPService;
-import model.GoodsDto;
-import model.OrdersDto;
-import model.OrdersListDto;
+import model.impl.GoodsDto;
+import model.impl.OrderDto;
+import model.impl.OrderLineDto;
 import service.GoodsService;
-import service.OrdersListService;
-import service.OrdersService;
+import service.OrderLineService;
+import service.OrderService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -26,10 +26,10 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     GoodsService goodsService;
 
     @EJB
-    OrdersListService ordersListService;
+    OrderLineService orderLineService;
 
     @EJB
-    OrdersService ordersService;
+    OrderService orderService;
 
     @Override
     public List<GoodsDto> getAllGoods() {
@@ -42,32 +42,37 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     }
 
     @Override
-    public List<OrdersListDto> getOrdersList(long orderNumber) {
-        return ordersListService.getOrdersList(orderNumber);
+    public List<OrderLineDto> getOrderLine(long orderNumber) {
+        return orderLineService.getOrderLine(orderNumber);
     }
 
     @Override
-    public long createOrdersList(long orderNumber, long goodsId, int amount) {
-        return ordersListService.createOrdersListAsId(orderNumber, goodsId, amount);
+    public long createOrderLine(long orderNumber, long goodsId, int amount) {
+        return orderLineService.createOrderLineAsId(orderNumber, goodsId, amount);
     }
 
     @Override
-    public long updateOrdersList(long ordersListId, int amount) {
-        return ordersListService.updateOrdersList(ordersListId, amount);
+    public long updateOrderLine(long orderLineId, int amount) {
+        return orderLineService.updateOrderLine(orderLineId, amount);
     }
 
     @Override
-    public long deleteOrdersList(long id) {
-        return ordersListService.deleteOrdersList(id);
+    public long deleteOrderLine(long id) {
+        return orderLineService.deleteOrderLine(id);
     }
 
     @Override
-    public OrdersDto getOrder(long orderNumber) {
-        return ordersService.getOrder(orderNumber);
+    public OrderDto getOrder(long orderNumber) {
+        return orderService.getOrder(orderNumber);
     }
 
     @Override
     public long createOrder(String customer) {
-        return ordersService.createOrderAsId(customer);
+        return orderService.createOrderAsId(customer);
+    }
+
+    @Override
+    public List<OrderDto> getAllOrders() {
+        return orderService.getAllOrders();
     }
 }

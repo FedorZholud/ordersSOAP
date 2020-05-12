@@ -1,7 +1,6 @@
 package service;
 
-import entity.GoodsEntity;
-import model.GoodsDto;
+import model.impl.GoodsDto;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package app;
 
-import model.GoodsDto;
-import model.OrdersDto;
-import model.OrdersListDto;
+import model.impl.GoodsDto;
+import model.impl.OrderDto;
+import model.impl.OrderLineDto;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -27,25 +27,28 @@ public interface OrdersSOAPService {
     GoodsDto getGoodsById(@WebParam(name = "id") long id);
 
     @WebMethod
-    List<OrdersListDto> getOrdersList(@WebParam(name = "orderNumber") long orderNumber);
+    List<OrderLineDto> getOrderLine(@WebParam(name = "orderNumber") long orderNumber);
 
     @WebMethod
-    @WebResult(name = "ordersListId") long createOrdersList(
+    @WebResult(name = "orderLineId") long createOrderLine(
             @WebParam(name = "orderNumber") long orderNumber,
             @WebParam(name = "goodsId") long goodsId,
             @WebParam(name = "amount") int amount);
 
     @WebMethod
-    @WebResult(name = "ordersListId") long updateOrdersList(
-            @WebParam(name = "ordersListId") long ordersListId,
+    @WebResult(name = "orderLineId") long updateOrderLine(
+            @WebParam(name = "orderLineId") long orderLineId,
             @WebParam(name = "amount") int amount);
 
     @WebMethod
-    @WebResult(name = "ordersListId") long deleteOrdersList(@WebParam(name = "ordersListId") long id);
+    @WebResult(name = "orderLineId") long deleteOrderLine(@WebParam(name = "orderLineId") long id);
 
     @WebMethod
-    OrdersDto getOrder(@WebParam(name = "orderNumber") long orderNumber);
+    OrderDto getOrder(@WebParam(name = "orderNumber") long orderNumber);
 
     @WebMethod
     @WebResult(name = "orderNumber") long createOrder(@WebParam(name = "customer") String customer);
+
+    @WebMethod
+    List<OrderDto> getAllOrders();
 }
