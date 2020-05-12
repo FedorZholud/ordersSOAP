@@ -6,9 +6,9 @@
     <persistence-unit name="myUnit" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:/PostgresDS</jta-data-source>
-        <class>entity.GoodsEntity</class>
-        <class>entity.OrdersListEntity</class>
-        <class>entity.OrdersEntity</class>
+        <class>entity.impl.GoodsEntity</class>
+        <class>entity.impl.OrderLineEntity</class>
+        <class>entity.impl.OrderEntity</class>
         <properties>
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />

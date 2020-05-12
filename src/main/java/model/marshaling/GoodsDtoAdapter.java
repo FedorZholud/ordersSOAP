@@ -5,7 +5,7 @@ package model.marshaling;
  *
  */
 
-import model.GoodsDto;
+import model.impl.GoodsDto;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 

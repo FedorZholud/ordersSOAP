@@ -1,4 +1,7 @@
 package model;
 
-public abstract class BaseDto {
+import model.Dto;
+
+public abstract class BaseDto implements Dto {
+
 }
