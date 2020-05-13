@@ -75,4 +75,9 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     public List<OrderDto> getAllOrders() {
         return orderService.getAllOrders();
     }
+
+    @Override
+    public long deleteOrder(long orderNumber) {
+        return orderService.deleteOrder(orderNumber);
+    }
 }

@@ -18,4 +18,6 @@ public interface OrderService {
     OrderDto createOrder(String customer);
 
     List<OrderDto> getAllOrders();
+
+    long deleteOrder(long orderNumber);
 }

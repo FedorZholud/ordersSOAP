@@ -1,9 +1,11 @@
 package service.impl;
 
 import entity.impl.OrderEntity;
+import entity.impl.OrderState;
 import mapper.jpa.EntityToDtoJpaMapper;
 import mapper.jpa.impl.order.OrderEntityToDtoJpaMapper;
 import model.impl.OrderDto;
+import org.hibernate.criterion.Order;
 import repository.impl.OrderJpaRepository;
 import service.OrderService;
 
@@ -50,6 +52,7 @@ public class OrderServiceImpl implements OrderService {
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setCustomer(customer);
         orderEntity.setOrderTime(new Timestamp(currentDate.getTime()));
+        orderEntity.setOrderState(OrderState.ACTIVE);
 
         ordersRepository.create(orderEntity);
 
@@ -63,5 +66,11 @@ public class OrderServiceImpl implements OrderService {
         return ordersEntities.stream()
                 .map(orderEntityToDtoJpaMapper::entityToDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public long deleteOrder(long orderNumber) {
+        ordersRepository.delete(ordersRepository.find(orderNumber));
+        return orderNumber;
     }
 }
