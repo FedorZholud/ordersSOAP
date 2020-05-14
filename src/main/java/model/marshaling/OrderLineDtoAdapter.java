@@ -16,7 +16,7 @@ public class OrderLineDtoAdapter extends XmlAdapter<AdaptedOrderLineDto, OrderLi
         return OrderLineDto.builder()
                 .setId(adaptedOrderLineDto.getId())
                 .setOrderNumber(adaptedOrderLineDto.getOrderNumber())
-                .setGoodsName(adaptedOrderLineDto.getGoodsName())
+                .setGoodsId(adaptedOrderLineDto.getGoodsId())
                 .setPrice(adaptedOrderLineDto.getPrice())
                 .setAmount(adaptedOrderLineDto.getAmount())
                 .setPriceSum(adaptedOrderLineDto.getPriceSum())
@@ -28,7 +28,7 @@ public class OrderLineDtoAdapter extends XmlAdapter<AdaptedOrderLineDto, OrderLi
         AdaptedOrderLineDto adaptedOrderLineDto = new AdaptedOrderLineDto();
         adaptedOrderLineDto.setId(orderLineDto.getId());
         adaptedOrderLineDto.setOrderNumber(orderLineDto.getOrderNumber());
-        adaptedOrderLineDto.setGoodsName(orderLineDto.getGoodsName());
+        adaptedOrderLineDto.setGoodsId(orderLineDto.getGoodsId());
         adaptedOrderLineDto.setPrice(orderLineDto.getPrice());
         adaptedOrderLineDto.setAmount(orderLineDto.getAmount());
         adaptedOrderLineDto.setPriceSum(orderLineDto.getPriceSum());

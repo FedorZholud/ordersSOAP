@@ -9,7 +9,7 @@ public class AdaptedOrderLineDto {
 
     private long id;
     private long orderNumber;
-    private String goodsName;
+    private long goodsId;
     private double price;
     private int amount;
     private double priceSum;
@@ -30,12 +30,12 @@ public class AdaptedOrderLineDto {
         return orderNumber;
     }
 
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
+    public void setGoodsId(long goodsId) {
+        this.goodsId = goodsId;
     }
 
-    public String getGoodsName() {
-        return goodsName;
+    public long getGoodsId() {
+        return goodsId;
     }
 
     public void setPrice(double price) {

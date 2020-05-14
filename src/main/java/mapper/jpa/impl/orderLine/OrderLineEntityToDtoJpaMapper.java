@@ -20,7 +20,7 @@ public class OrderLineEntityToDtoJpaMapper implements EntityToDtoJpaMapper<Order
         return OrderLineDto.builder()
                 .setId(entity.getId())
                 .setOrderNumber(entity.getOrderNumber())
-                .setGoodsName(entity.getGoodsName())
+                .setGoodsId(entity.getGoodsId())
                 .setPrice(entity.getPrice())
                 .setAmount(entity.getAmount())
                 .setPriceSum(entity.getPriceSum())
