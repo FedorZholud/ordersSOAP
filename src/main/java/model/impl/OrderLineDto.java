@@ -3,6 +3,7 @@ package model.impl;
 import model.BaseDto;
 import model.marshaling.OrderLineDtoAdapter;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -17,7 +18,7 @@ public class OrderLineDto extends BaseDto {
 
     private final long id;
     private final long orderNumber;
-    private final String goodsName;
+    private final long goodsId;
     private final double price;
     private final int amount;
     private final double priceSum;
@@ -30,8 +31,8 @@ public class OrderLineDto extends BaseDto {
         return orderNumber;
     }
 
-    public String getGoodsName() {
-        return goodsName;
+    public long getGoodsId() {
+        return goodsId;
     }
 
     public double getPrice() {
@@ -48,13 +49,13 @@ public class OrderLineDto extends BaseDto {
 
     @SuppressWarnings("unused")
     private OrderLineDto() {
-        this(0, 0, null, 0, 0, 0);
+        this(0, 0, 0, 0, 0, 0);
     }
 
-    private OrderLineDto(long id, long orderNumber, String goodsName, double price, int amount, double priceSum) {
+    private OrderLineDto(long id, long orderNumber, long goodsId, double price, int amount, double priceSum) {
         this.id = id;
         this.orderNumber = orderNumber;
-        this.goodsName = goodsName;
+        this.goodsId = goodsId;
         this.price = price;
         this.amount = amount;
         this.priceSum = priceSum;
@@ -68,7 +69,7 @@ public class OrderLineDto extends BaseDto {
 
         private long id;
         private long orderNumber;
-        private String goodsName;
+        private long goodsId;
         private double price;
         private int amount;
         private double priceSum;
@@ -87,8 +88,8 @@ public class OrderLineDto extends BaseDto {
             return this;
         }
 
-        public OrdersListDtoBuilder setGoodsName(String goodsName) {
-            this.goodsName = goodsName;
+        public OrdersListDtoBuilder setGoodsId(long goodsId) {
+            this.goodsId = goodsId;
             return this;
         }
 
@@ -110,7 +111,7 @@ public class OrderLineDto extends BaseDto {
             return new OrderLineDto(
                     this.id,
                     this.orderNumber,
-                    this.goodsName,
+                    this.goodsId,
                     this.price,
                     this.amount,
                     this.priceSum);

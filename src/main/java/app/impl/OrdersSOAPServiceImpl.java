@@ -47,18 +47,30 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     }
 
     @Override
-    public long createOrderLine(long orderNumber, long goodsId, int amount) {
-        return orderLineService.createOrderLineAsId(orderNumber, goodsId, amount);
+    public long createOrderLine(OrderLineDto orderLineDto) {
+        return orderLineService.createOrderLineAsId(orderLineDto);
     }
 
-    @Override
-    public long updateOrderLine(long orderLineId, int amount) {
-        return orderLineService.updateOrderLine(orderLineId, amount);
-    }
+//    @Override
+//    public long updateOrderLine(long orderLineId, int amount) {
+//        return orderLineService.updateOrderLine(orderLineId, amount);
+//    }
+
 
     @Override
-    public long deleteOrderLine(long id) {
-        return orderLineService.deleteOrderLine(id);
+    public long updateOrderLine(OrderLineDto orderLineDto) {
+        return orderLineService.updateOrderLine(orderLineDto);
+    }
+
+//    @Override
+//    public long deleteOrderLine(long id) {
+//        return orderLineService.deleteOrderLine(id);
+//    }
+
+
+    @Override
+    public long deleteOrderLine(OrderLineDto orderLineDto) {
+        return orderLineService.deleteOrderLine(orderLineDto);
     }
 
     @Override

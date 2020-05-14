@@ -9,6 +9,7 @@ import service.GoodsService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +28,7 @@ public class GoodsServiceImpl implements GoodsService {
     EntityToDtoJpaMapper<GoodsEntity, GoodsDto> goodsEntityToDtoJpaMapper;
 
     @Override
+    @Transactional
     public List<GoodsDto> getGoods() {
         List<GoodsEntity> goodsEntities = goodsRepository.findAll();
 
@@ -36,6 +38,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    @Transactional
     public GoodsDto getGoodsById(long id) {
         GoodsEntity goodsEntity = goodsRepository.find(id);
 

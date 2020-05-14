@@ -11,6 +11,7 @@ import service.OrderService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -31,17 +32,20 @@ public class OrderServiceImpl implements OrderService {
     EntityToDtoJpaMapper<OrderEntity, OrderDto> orderEntityToDtoJpaMapper;
 
     @Override
+    @Transactional
     public OrderDto getOrder(long orderNumber) {
         OrderEntity orderEntity = ordersRepository.find((int) orderNumber);
         return orderEntityToDtoJpaMapper.entityToDto(orderEntity);
     }
 
     @Override
+    @Transactional
     public long createOrderAsId(String customer) {
         return createOrdersEntity(customer).getOrderNumber();
     }
 
     @Override
+    @Transactional
     public OrderDto createOrder(String customer) {
         return orderEntityToDtoJpaMapper.entityToDto(createOrdersEntity(customer));
     }
@@ -60,6 +64,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public List<OrderDto> getAllOrders() {
         List<OrderEntity> ordersEntities = ordersRepository.findAll();
 
@@ -69,6 +74,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public long deleteOrder(long orderNumber) {
         ordersRepository.delete(ordersRepository.find(orderNumber));
         return orderNumber;

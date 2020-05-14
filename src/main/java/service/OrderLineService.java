@@ -12,16 +12,22 @@ import java.util.List;
 
 public interface OrderLineService {
 
-    OrderLineDto createOrderLine(long orderNumber, long goodsId, int amount);
-
-    long createOrderLineAsId(long orderNumber, long goodsId, int amount);
+//    OrderLineDto createOrderLine(long orderNumber, long goodsId, int amount);
+//
+//    long createOrderLineAsId(long orderNumber, long goodsId, int amount);
 
     long createOrderLineAsId(OrderLineDto orderLineDto);
 
+    OrderLineDto createOrderLine(OrderLineDto orderLineDto);
+
     List<OrderLineDto> getOrderLine(long orderNumber);
 
-    long deleteOrderLine(long id);
+//    long deleteOrderLine(long id);
 
-    long updateOrderLine(long id, int amount);
+    long deleteOrderLine(OrderLineDto orderLineDto);
+
+//    long updateOrderLine(long id, int amount);
+
+    long updateOrderLine(OrderLineDto orderLineDto);
 
 }

@@ -24,8 +24,8 @@ public class OrderLineEntity extends JpaBaseEntity implements Serializable {
     @Column(name = "order_number")
     private long orderNumber;
 
-    @Column(name = "goods_name")
-    private String goodsName;
+    @Column(name = "goods_id")
+    private long goodsId;
 
     @Column(name = "price")
     private double price;
@@ -48,12 +48,12 @@ public class OrderLineEntity extends JpaBaseEntity implements Serializable {
         this.orderNumber = orderNumber;
     }
 
-    public String getGoodsName() {
-        return goodsName;
+    public long getGoodsId() {
+        return goodsId;
     }
 
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
+    public void setGoodsId(long goodsId) {
+        this.goodsId = goodsId;
     }
 
     public double getPrice() {

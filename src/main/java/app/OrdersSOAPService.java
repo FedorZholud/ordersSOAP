@@ -30,18 +30,27 @@ public interface OrdersSOAPService {
     List<OrderLineDto> getOrderLine(@WebParam(name = "orderNumber") long orderNumber);
 
     @WebMethod
-    @WebResult(name = "orderLineId") long createOrderLine(
-            @WebParam(name = "orderNumber") long orderNumber,
-            @WebParam(name = "goodsId") long goodsId,
-            @WebParam(name = "amount") int amount);
+    @WebResult(name = "orderLineId") long createOrderLine(@WebParam(name = "orderLine") OrderLineDto orderLineDto);
+
+//    @WebMethod
+//    @WebResult(name = "orderLineId") long createOrderLine(
+//            @WebParam(name = "orderNumber") long orderNumber,
+//            @WebParam(name = "goodsId") long goodsId,
+//            @WebParam(name = "amount") int amount);
+
+//    @WebMethod
+//    @WebResult(name = "orderLineId") long updateOrderLine(
+//            @WebParam(name = "orderLineId") long orderLineId,
+//            @WebParam(name = "amount") int amount);
 
     @WebMethod
-    @WebResult(name = "orderLineId") long updateOrderLine(
-            @WebParam(name = "orderLineId") long orderLineId,
-            @WebParam(name = "amount") int amount);
+    @WebResult(name = "orderLineId") long updateOrderLine(@WebParam(name = "orderLine") OrderLineDto orderLineDto);
+
+//    @WebMethod
+//    @WebResult(name = "orderLineId") long deleteOrderLine(@WebParam(name = "orderLineId") long id);
 
     @WebMethod
-    @WebResult(name = "orderLineId") long deleteOrderLine(@WebParam(name = "orderLineId") long id);
+    @WebResult(name = "orderLineId") long deleteOrderLine(@WebParam(name = "orderLine") OrderLineDto orderLineDto);
 
     @WebMethod
     OrderDto getOrder(@WebParam(name = "orderNumber") long orderNumber);
