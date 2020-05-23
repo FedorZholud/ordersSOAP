@@ -33,12 +33,12 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
 
     @Override
     public List<GoodsDto> getAllGoods() {
-        return goodsService.getGoods();
+        return goodsService.findAllGoods();
     }
 
     @Override
     public GoodsDto getGoodsById(long id) {
-        return goodsService.getGoodsById(id);
+        return goodsService.findGoodsById(id);
     }
 
     @Override

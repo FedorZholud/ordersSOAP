@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface GoodsService {
 
-    List<GoodsDto> getGoods();
+    List<GoodsDto> findAllGoods();
 
-    GoodsDto getGoodsById(long id);
+    GoodsDto findGoodsById(long id);
 }
