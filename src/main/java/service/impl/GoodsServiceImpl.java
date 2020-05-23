@@ -29,7 +29,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     @Transactional
-    public List<GoodsDto> getGoods() {
+    public List<GoodsDto> findAllGoods() {
         List<GoodsEntity> goodsEntities = goodsRepository.findAll();
 
         return goodsEntities.stream()
@@ -39,7 +39,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     @Transactional
-    public GoodsDto getGoodsById(long id) {
+    public GoodsDto findGoodsById(long id) {
         GoodsEntity goodsEntity = goodsRepository.find(id);
 
         return goodsEntityToDtoJpaMapper.entityToDto(goodsEntity);

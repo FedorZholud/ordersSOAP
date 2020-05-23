@@ -94,6 +94,12 @@
             <version>2.0.0.Final</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.jboss.arquillian.extension</groupId>
+            <artifactId>arquillian-transaction-jta</artifactId>
+            <version>1.0.0.Alpha3</version>
+        </dependency>
+
         <!-- End testing -->
 
     </dependencies>

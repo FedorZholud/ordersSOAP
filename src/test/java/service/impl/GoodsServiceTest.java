@@ -7,6 +7,8 @@ import model.Dto;
 import model.impl.GoodsDto;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -21,11 +23,17 @@ import service.GoodsService;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
+@Transactional(TransactionMode.ROLLBACK)
 public class GoodsServiceTest {
+
+    static final Logger logger =
+            LoggerFactory.getLogger(GoodsServiceTest.class);
 
     @Deployment
     public static Archive<?> createDeployment() {
@@ -43,9 +51,9 @@ public class GoodsServiceTest {
         goodsEntity.setName("Cheese");
         goodsEntity.setPrice(100.0);
 
-        System.out.println(goodsEntity.toString());
-
         goodsJpaRepository.create(goodsEntity);
+
+        logger.info(goodsEntity.toString());
     }
 
     @Inject
@@ -61,18 +69,16 @@ public class GoodsServiceTest {
     GoodsService goodsService;
 
     @Test
-    public void getGoods() {
-        List<GoodsDto> goodsDtos = goodsService.getGoods();
-        System.out.println("goodsDtos size: " + goodsDtos.size());
+    public void findAllGoods() {
+        List<GoodsDto> goodsDtos = goodsService.findAllGoods();
         assertNotNull(goodsDtos);
-        assertEquals(2, goodsDtos.size());
+        assertEquals(1, goodsDtos.size());
     }
 
     @Test
-    public void getGoodsById() {
-        goodsDto = goodsService.getGoodsById(goodsEntity.getId());
-        System.out.println("goodsDto id: " + goodsDto.getId());
-        System.out.println("goodsDto name" + goodsDto.getName());
+    public void findGoodsById() {
+        goodsDto = goodsService.findGoodsById(goodsEntity.getId());
+        logger.info("goodsDto id: " + goodsDto.getId());
         assertNotNull(goodsDto);
         assertEquals("Cheese", goodsDto.getName());
     }
