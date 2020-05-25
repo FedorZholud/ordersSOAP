@@ -92,4 +92,9 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     public long deleteOrder(long orderNumber) {
         return orderService.deleteOrder(orderNumber);
     }
+
+    @Override
+    public long updateOrder(OrderDto orderDto) {
+        return orderService.update(orderDto);
+    }
 }

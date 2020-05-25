@@ -87,11 +87,12 @@ public class OrderEntity extends JpaBaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "OrdersEntity{" +
+        return "OrderEntity{" +
                 "orderNumber=" + orderNumber +
                 ", customer='" + customer + '\'' +
                 ", orderTime=" + orderTime +
-                ", ordersListEntities=" + orderLineEntities +
+                ", orderState=" + orderState +
+                ", orderLineEntities=" + orderLineEntities +
                 '}';
     }
 }

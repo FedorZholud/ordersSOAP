@@ -63,4 +63,7 @@ public interface OrdersSOAPService {
 
     @WebMethod
     @WebResult(name = "orderNumber") long deleteOrder(@WebParam(name = "orderNumber") long orderNumber);
+
+    @WebMethod
+    @WebResult(name = "orderNumber") long updateOrder(@WebParam(name = "order") OrderDto orderDto);
 }

@@ -4,6 +4,8 @@ import entity.impl.GoodsEntity;
 import entity.impl.OrderLineEntity;
 import mapper.jpa.JpaSymmetricMapper;
 import model.impl.OrderLineDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import repository.impl.GoodsJpaRepository;
 import repository.impl.OrderLineJpaRepository;
 import service.OrderLineService;
@@ -21,6 +23,9 @@ import java.util.stream.Collectors;
 
 @Stateless
 public class OrderLineServiceImpl implements OrderLineService {
+
+    static final Logger logger =
+            LoggerFactory.getLogger(OrderLineServiceImpl.class);
 
     @EJB
     OrderLineJpaRepository orderLineJpaRepository;
@@ -43,6 +48,7 @@ public class OrderLineServiceImpl implements OrderLineService {
     public long createOrderLineAsId(OrderLineDto orderLineDto) {
         OrderLineEntity orderLineEntity = orderLineDtoJpaSymmetricMapper.dtoToEntity(orderLineDto);
         orderLineJpaRepository.create(orderLineEntity);
+        logger.info(orderLineEntity.toString());
         return orderLineEntity.getId();
     }
 
@@ -51,6 +57,7 @@ public class OrderLineServiceImpl implements OrderLineService {
     public OrderLineDto createOrderLine(OrderLineDto orderLineDto) {
         OrderLineEntity orderLineEntity = orderLineDtoJpaSymmetricMapper.dtoToEntity(orderLineDto);
         orderLineJpaRepository.create(orderLineEntity);
+        logger.info(orderLineEntity.toString());
         return orderLineDtoJpaSymmetricMapper.entityToDto(orderLineEntity);
     }
 
@@ -75,6 +82,7 @@ public class OrderLineServiceImpl implements OrderLineService {
         List<OrderLineEntity> ordersListEntities = orderLineJpaRepository.findAll(orderNumber);
 
         return ordersListEntities.stream()
+                .peek(orderLineEntity -> logger.info(orderLineEntity.toString()))
                 .map(orderLineDtoJpaSymmetricMapper::entityToDto)
                 .collect(Collectors.toList());
     }
@@ -92,6 +100,7 @@ public class OrderLineServiceImpl implements OrderLineService {
     public long deleteOrderLine(OrderLineDto orderLineDto) {
         OrderLineEntity orderLineEntity = orderLineJpaRepository.find(orderLineDto.getId());
         orderLineJpaRepository.delete(orderLineEntity);
+        logger.info(orderLineEntity.toString());
 
         return orderLineEntity.getId();
     }
@@ -117,6 +126,7 @@ public class OrderLineServiceImpl implements OrderLineService {
         orderLineEntity.setPriceSum(orderLineEntity.getPrice() * orderLineDto.getAmount());
 
         orderLineJpaRepository.update(orderLineEntity);
+        logger.info(orderLineEntity.toString());
 
         return orderLineEntity.getId();
     }

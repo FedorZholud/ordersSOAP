@@ -3,9 +3,9 @@ package service.impl;
 import entity.impl.OrderEntity;
 import entity.impl.OrderState;
 import mapper.jpa.EntityToDtoJpaMapper;
-import mapper.jpa.impl.order.OrderEntityToDtoJpaMapper;
 import model.impl.OrderDto;
-import org.hibernate.criterion.Order;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import repository.impl.OrderJpaRepository;
 import service.OrderService;
 
@@ -25,8 +25,11 @@ import java.util.stream.Collectors;
 @Stateless
 public class OrderServiceImpl implements OrderService {
 
+    static final Logger logger =
+            LoggerFactory.getLogger(OrderServiceImpl.class);
+
     @EJB
-    OrderJpaRepository ordersRepository;
+    OrderJpaRepository orderJpaRepository;
 
     @EJB(beanName = "OrderEntityToDtoJpaMapper")
     EntityToDtoJpaMapper<OrderEntity, OrderDto> orderEntityToDtoJpaMapper;
@@ -34,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public OrderDto getOrder(long orderNumber) {
-        OrderEntity orderEntity = ordersRepository.find((int) orderNumber);
+        OrderEntity orderEntity = orderJpaRepository.find((int) orderNumber);
         return orderEntityToDtoJpaMapper.entityToDto(orderEntity);
     }
 
@@ -58,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
         orderEntity.setOrderTime(new Timestamp(currentDate.getTime()));
         orderEntity.setOrderState(OrderState.ACTIVE);
 
-        ordersRepository.create(orderEntity);
+        orderJpaRepository.create(orderEntity);
 
         return orderEntity;
     }
@@ -66,7 +69,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public List<OrderDto> getAllOrders() {
-        List<OrderEntity> ordersEntities = ordersRepository.findAll();
+        List<OrderEntity> ordersEntities = orderJpaRepository.findAll();
 
         return ordersEntities.stream()
                 .map(orderEntityToDtoJpaMapper::entityToDto)
@@ -76,7 +79,17 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public long deleteOrder(long orderNumber) {
-        ordersRepository.delete(ordersRepository.find(orderNumber));
+        orderJpaRepository.delete(orderJpaRepository.find(orderNumber));
         return orderNumber;
+    }
+
+    @Override
+    public long update(OrderDto orderDto) {
+        OrderEntity orderEntity = orderJpaRepository.find(orderDto.getOrderNumber());
+        orderEntity.setCustomer(orderDto.getCustomer());
+
+        orderJpaRepository.update(orderEntity);
+
+        return orderEntity.getOrderNumber();
     }
 }
