@@ -20,4 +20,6 @@ public interface OrderService {
     List<OrderDto> getAllOrders();
 
     long deleteOrder(long orderNumber);
+
+    long update(OrderDto orderDto);
 }

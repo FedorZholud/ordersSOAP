@@ -4,6 +4,8 @@ package service.impl;
 import entity.impl.GoodsEntity;
 import mapper.jpa.EntityToDtoJpaMapper;
 import model.impl.GoodsDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import repository.impl.GoodsJpaRepository;
 import service.GoodsService;
 
@@ -21,6 +23,9 @@ import java.util.stream.Collectors;
 @Stateless
 public class GoodsServiceImpl implements GoodsService {
 
+    static final Logger logger =
+            LoggerFactory.getLogger(GoodsServiceImpl.class);
+
     @EJB
     GoodsJpaRepository goodsRepository;
 
@@ -33,6 +38,7 @@ public class GoodsServiceImpl implements GoodsService {
         List<GoodsEntity> goodsEntities = goodsRepository.findAll();
 
         return goodsEntities.stream()
+                .peek(goodsEntity -> logger.info(goodsEntity.toString()))
                 .map(goodsEntityToDtoJpaMapper::entityToDto)
                 .collect(Collectors.toList());
     }
@@ -41,6 +47,7 @@ public class GoodsServiceImpl implements GoodsService {
     @Transactional
     public GoodsDto findGoodsById(long id) {
         GoodsEntity goodsEntity = goodsRepository.find(id);
+        logger.info(goodsEntity.toString());
 
         return goodsEntityToDtoJpaMapper.entityToDto(goodsEntity);
     }

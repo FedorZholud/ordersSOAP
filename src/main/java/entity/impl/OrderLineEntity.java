@@ -79,4 +79,16 @@ public class OrderLineEntity extends JpaBaseEntity implements Serializable {
     public void setPriceSum(double priceSum) {
         this.priceSum = priceSum;
     }
+
+    @Override
+    public String toString() {
+        return "OrderLineEntity{" +
+                "id=" + id +
+                ", orderNumber=" + orderNumber +
+                ", goodsId=" + goodsId +
+                ", price=" + price +
+                ", amount=" + amount +
+                ", priceSum=" + priceSum +
+                '}';
+    }
 }

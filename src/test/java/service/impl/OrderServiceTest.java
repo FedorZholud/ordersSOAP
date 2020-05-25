@@ -1,10 +1,11 @@
 package service.impl;
 
+
 import entity.Entity;
-import entity.impl.GoodsEntity;
+import entity.impl.OrderEntity;
 import mapper.EntityToDtoMapper;
 import model.Dto;
-import model.impl.GoodsDto;
+import model.impl.OrderDto;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
@@ -13,20 +14,18 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import repository.Repository;
-import repository.impl.GoodsJpaRepository;
+import repository.impl.OrderJpaRepository;
 import service.GoodsService;
+import service.OrderService;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Fedor Zholud
@@ -35,10 +34,10 @@ import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
 @Transactional(TransactionMode.ROLLBACK)
-public class GoodsServiceTest {
+public class OrderServiceTest {
 
     static final Logger logger =
-            LoggerFactory.getLogger(GoodsServiceTest.class);
+            LoggerFactory.getLogger(OrderServiceTest.class);
 
     @Deployment
     public static Archive<?> createDeployment() {
@@ -51,40 +50,45 @@ public class GoodsServiceTest {
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
-    @Before
-    public void createEntity() {
-        goodsEntity.setName("Cheese");
-        goodsEntity.setPrice(100.0);
-
-        goodsJpaRepository.create(goodsEntity);
-
-        logger.info(goodsEntity.toString());
-    }
+    @Inject
+    OrderEntity orderEntity;
 
     @Inject
-    GoodsDto goodsDto;
-
-    @Inject
-    GoodsEntity goodsEntity;
+    OrderDto orderDto;
 
     @EJB
-    GoodsJpaRepository goodsJpaRepository;
+    OrderJpaRepository orderJpaRepository;
 
     @EJB
-    GoodsService goodsService;
+    OrderService orderService;
 
     @Test
-    public void findAllGoods() {
-        List<GoodsDto> goodsDtos = goodsService.findAllGoods();
-        assertNotNull(goodsDtos);
-        assertEquals(1, goodsDtos.size());
-    }
+    public void getOrder() {
+
+    };
 
     @Test
-    public void findGoodsById() {
-        goodsDto = goodsService.findGoodsById(goodsEntity.getId());
-        logger.info("goodsDto id: " + goodsDto.getId());
-        assertNotNull(goodsDto);
-        assertEquals("Cheese", goodsDto.getName());
-    }
+    public void createOrderAsId() {
+
+    };
+
+    @Test
+    public void createOrder() {
+
+    };
+
+    @Test
+    public void getAllOrders() {
+
+    };
+
+    @Test
+    public void deleteOrder() {
+
+    };
+
+    @Test
+    public void update() {
+
+    };
 }
