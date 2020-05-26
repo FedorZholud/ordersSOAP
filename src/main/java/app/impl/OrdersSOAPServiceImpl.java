@@ -95,6 +95,6 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
 
     @Override
     public long updateOrder(OrderDto orderDto) {
-        return orderService.update(orderDto);
+        return orderService.updateOrder(orderDto);
     }
 }

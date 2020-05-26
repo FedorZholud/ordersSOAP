@@ -21,5 +21,5 @@ public interface OrderService {
 
     long deleteOrder(long orderNumber);
 
-    long update(OrderDto orderDto);
+    long updateOrder(OrderDto orderDto);
 }
