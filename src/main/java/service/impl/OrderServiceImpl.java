@@ -84,7 +84,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public long update(OrderDto orderDto) {
+    public long updateOrder(OrderDto orderDto) {
         OrderEntity orderEntity = orderJpaRepository.find(orderDto.getOrderNumber());
         orderEntity.setCustomer(orderDto.getCustomer());
 

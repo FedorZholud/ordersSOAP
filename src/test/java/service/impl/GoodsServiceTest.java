@@ -53,6 +53,7 @@ public class GoodsServiceTest {
 
     @Before
     public void createEntity() {
+        logger.info("Before createEntity");
         goodsEntity.setName("Cheese");
         goodsEntity.setPrice(100.0);
 
@@ -75,16 +76,20 @@ public class GoodsServiceTest {
 
     @Test
     public void findAllGoods() {
+        logger.info("Start test findAllGoods");
         List<GoodsDto> goodsDtos = goodsService.findAllGoods();
         assertNotNull(goodsDtos);
         assertEquals(1, goodsDtos.size());
+        logger.info("End test findAllGoods\n");
     }
 
     @Test
     public void findGoodsById() {
+        logger.info("Start test findGoodsById");
         goodsDto = goodsService.findGoodsById(goodsEntity.getId());
         logger.info("goodsDto id: " + goodsDto.getId());
         assertNotNull(goodsDto);
         assertEquals("Cheese", goodsDto.getName());
+        logger.info("End test findGoodsById\n");
     }
 }

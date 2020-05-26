@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,7 +43,7 @@ public class OrderEntity extends JpaBaseEntity implements Serializable {
 
     @OneToMany
     @JoinColumn(name = "order_number")
-    List<OrderLineEntity> orderLineEntities;
+    private List<OrderLineEntity> orderLineEntities = new ArrayList<>();
 
     public long getOrderNumber() {
         return orderNumber;
