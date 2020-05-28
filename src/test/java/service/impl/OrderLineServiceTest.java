@@ -140,7 +140,7 @@ public class OrderLineServiceTest {
     @Test
     public void getOrderLine() {
         logger.info("Start test getOrderLine");
-        List<OrderLineDto> orderLineDtos = orderLineService.getOrderLine(orderLineEntity.getOrderNumber());
+        List<OrderLineDto> orderLineDtos = orderLineService.getOrderLine(orderLineEntity.getOrderNumber(), 0, 10);
         assertNotNull(orderLineDtos);
         assertEquals(1, orderLineDtos.size());
         logger.info("End test getOrderLine\n");

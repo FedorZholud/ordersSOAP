@@ -32,8 +32,8 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     OrderService orderService;
 
     @Override
-    public List<GoodsDto> getAllGoods() {
-        return goodsService.findAllGoods();
+    public List<GoodsDto> getAllGoods(int page, int pageSize) {
+        return goodsService.findAllGoods(page, pageSize);
     }
 
     @Override
@@ -42,8 +42,8 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     }
 
     @Override
-    public List<OrderLineDto> getOrderLine(long orderNumber) {
-        return orderLineService.getOrderLine(orderNumber);
+    public List<OrderLineDto> getOrderLine(long orderNumber, int page, int pageSize) {
+        return orderLineService.getOrderLine(orderNumber, page, pageSize);
     }
 
     @Override
@@ -84,8 +84,8 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     }
 
     @Override
-    public List<OrderDto> getAllOrders() {
-        return orderService.getAllOrders();
+    public List<OrderDto> getAllOrders(int page, int pageSize) {
+        return orderService.getAllOrders(page, pageSize);
     }
 
     @Override

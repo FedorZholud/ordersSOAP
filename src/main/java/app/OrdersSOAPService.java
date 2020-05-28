@@ -21,13 +21,15 @@ import java.util.List;
 public interface OrdersSOAPService {
 
     @WebMethod
-    List<GoodsDto> getAllGoods();
+    List<GoodsDto> getAllGoods(@WebParam(name = "page") int page, @WebParam(name = "pageSize") int pageSize);
 
     @WebMethod
     GoodsDto getGoodsById(@WebParam(name = "id") long id);
 
     @WebMethod
-    List<OrderLineDto> getOrderLine(@WebParam(name = "orderNumber") long orderNumber);
+    List<OrderLineDto> getOrderLine(@WebParam(name = "orderNumber") long orderNumber,
+                                    @WebParam(name = "page") int page,
+                                    @WebParam(name = "pageSize") int pageSize);
 
     @WebMethod
     @WebResult(name = "orderLineId") long createOrderLine(@WebParam(name = "orderLine") OrderLineDto orderLineDto);
@@ -59,7 +61,7 @@ public interface OrdersSOAPService {
     @WebResult(name = "orderNumber") long createOrder(@WebParam(name = "customer") String customer);
 
     @WebMethod
-    List<OrderDto> getAllOrders();
+    List<OrderDto> getAllOrders(@WebParam(name = "page") int page, @WebParam(name = "pageSize") int pageSize);
 
     @WebMethod
     @WebResult(name = "orderNumber") long deleteOrder(@WebParam(name = "orderNumber") long orderNumber);

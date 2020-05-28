@@ -37,14 +37,21 @@ public abstract class AbstractJpaRepository<T extends JpaBaseEntity> implements 
     }
 
     @Override
-    public List<T> findAll() {
-        TypedQuery<T> query = em.createNamedQuery(entityClass.getName() + ".findAll", entityClass);
+    public List<T> findAll(int page, int pageSize) {
+        int firstResult = (page - 1) * pageSize;
+        TypedQuery<T> query = em.createNamedQuery(entityClass.getName() + ".findAll", entityClass)
+                .setFirstResult(firstResult)
+                .setMaxResults(pageSize);
         return query.getResultList();
     }
 
     @Override
-    public List<T> findAll(long param) {
-        TypedQuery<T> query = em.createNamedQuery(entityClass.getName() + ".findAll", entityClass).setParameter("param", param);
+    public List<T> findAll(long param, int page, int pageSize) {
+        int firstResult = (page - 1) * pageSize;
+        TypedQuery<T> query = em.createNamedQuery(entityClass.getName() + ".findAll", entityClass)
+                .setParameter("param", param)
+                .setFirstResult(firstResult)
+                .setMaxResults(pageSize);
         return query.getResultList();
     }
 

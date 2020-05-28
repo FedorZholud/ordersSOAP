@@ -23,14 +23,14 @@ public interface Repository<T extends Entity> {
      * find all entities in table
      * @return List of entities
      */
-    List<T> findAll();
+    List<T> findAll(int page, int pageSize);
 
     /**
      * find all entities by param
      * @param param parameter for search
      * @return List of entities
      */
-    List<T> findAll(long param);
+    List<T> findAll(long param, int page, int pageSize);
 
     /**
      * update

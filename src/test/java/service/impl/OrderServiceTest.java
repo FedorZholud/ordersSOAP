@@ -114,7 +114,7 @@ public class OrderServiceTest {
     @Test
     public void getAllOrders() {
         logger.info("Start test getAllOrder");
-        List<OrderDto> orderDtos = orderService.getAllOrders();
+        List<OrderDto> orderDtos = orderService.getAllOrders(0, 10);
         assertNotNull(orderDtos);
         assertEquals(1, orderDtos.size());
         logger.info("End test getAllOrder\n");

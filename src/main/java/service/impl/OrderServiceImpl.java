@@ -68,8 +68,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public List<OrderDto> getAllOrders() {
-        List<OrderEntity> ordersEntities = orderJpaRepository.findAll();
+    public List<OrderDto> getAllOrders(int page, int pageSize) {
+        List<OrderEntity> ordersEntities = orderJpaRepository.findAll(page, pageSize);
 
         return ordersEntities.stream()
                 .map(orderEntityToDtoJpaMapper::entityToDto)
