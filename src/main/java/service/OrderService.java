@@ -17,7 +17,7 @@ public interface OrderService {
 
     OrderDto createOrder(String customer);
 
-    List<OrderDto> getAllOrders();
+    List<OrderDto> getAllOrders(int page, int pageSize);
 
     long deleteOrder(long orderNumber);
 

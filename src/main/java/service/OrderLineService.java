@@ -20,7 +20,7 @@ public interface OrderLineService {
 
     OrderLineDto createOrderLine(OrderLineDto orderLineDto);
 
-    List<OrderLineDto> getOrderLine(long orderNumber);
+    List<OrderLineDto> getOrderLine(long orderNumber, int page, int pageSize);
 
 //    long deleteOrderLine(long id);
 

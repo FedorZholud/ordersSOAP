@@ -34,8 +34,8 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     @Transactional
-    public List<GoodsDto> findAllGoods() {
-        List<GoodsEntity> goodsEntities = goodsRepository.findAll();
+    public List<GoodsDto> findAllGoods(int page, int pageSize) {
+        List<GoodsEntity> goodsEntities = goodsRepository.findAll(page, pageSize);
 
         return goodsEntities.stream()
                 .peek(goodsEntity -> logger.info(goodsEntity.toString()))

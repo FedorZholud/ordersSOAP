@@ -77,7 +77,7 @@ public class GoodsServiceTest {
     @Test
     public void findAllGoods() {
         logger.info("Start test findAllGoods");
-        List<GoodsDto> goodsDtos = goodsService.findAllGoods();
+        List<GoodsDto> goodsDtos = goodsService.findAllGoods(0, 10);
         assertNotNull(goodsDtos);
         assertEquals(1, goodsDtos.size());
         logger.info("End test findAllGoods\n");

@@ -78,8 +78,8 @@ public class OrderLineServiceImpl implements OrderLineService {
 
     @Override
     @Transactional
-    public List<OrderLineDto> getOrderLine(long orderNumber) {
-        List<OrderLineEntity> ordersListEntities = orderLineJpaRepository.findAll(orderNumber);
+    public List<OrderLineDto> getOrderLine(long orderNumber, int page, int pageSize) {
+        List<OrderLineEntity> ordersListEntities = orderLineJpaRepository.findAll(orderNumber, page, pageSize);
 
         return ordersListEntities.stream()
                 .peek(orderLineEntity -> logger.info(orderLineEntity.toString()))
