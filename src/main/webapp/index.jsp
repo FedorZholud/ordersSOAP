@@ -8,9 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link href="index.css" rel="stylesheet">
     <title>Title</title>
 </head>
 <body>
-<h1>Orders SOAP Services</h1>
+<header>
+    <h1>Orders SOAP Services</h1>
+</header>
+<div class="buttons">
+    <button onclick="location.href = 'orders.jsp'">Show all orders</button>
+    <button onclick="location.href = '/createOrder'">Create new order</button>
+</div>
 </body>
 </html>
