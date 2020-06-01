@@ -6,6 +6,11 @@
     text-align: center;
 }
 
+.orderTable {
+    border: black 1px;
+    border-collapse: collapse;
+}
+
 button {
     height: 30px;
     padding: 5px;
