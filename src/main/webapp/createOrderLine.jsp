@@ -4,7 +4,9 @@
 <%@ page import="model.impl.GoodsDto" %>
 <%@ page import="java.util.List" %>
 <%@ page import="service.OrderLineService" %>
-<%@ page import="service.GoodsService" %><%--
+<%@ page import="service.GoodsService" %>
+<%@ page import="controller.GoodsController" %>
+<%@ page import="controller.OrderLineController" %><%--
   Created by IntelliJ IDEA.
   User: fzholud
   Date: 03.06.2020
@@ -20,15 +22,9 @@
 <body>
 <%
     InitialContext ic = new InitialContext();
-    OrderLineService orderLineService = (OrderLineService) ic.lookup("java:app/" + application.getContextPath() + "/OrderLineServiceImpl");
+    GoodsController goodsController = (GoodsController) ic.lookup("java:app/" + application.getContextPath() + "/GoodsControllerImpl");
 
-    GoodsService goodsService = (GoodsService) ic.lookup("java:app/" + application.getContextPath() + "/GoodsServiceImpl");
-
-//    long id = Long.parseLong(request.getParameter("id"));
-//
-//    OrderLineDto orderLineDto = orderLineService.getOrderLine(id);
-
-    List<GoodsDto> goodsDtos = goodsService.findAllGoods(1, 10);
+    List<GoodsDto> goodsDtos = goodsController.getAllGoods(1, 10);
     request.setAttribute("goods", goodsDtos);
 %>
 <form action="creatingOrderLine.jsp" method="post">

@@ -6,7 +6,8 @@
 <%@ page import="service.GoodsService" %>
 <%@ page import="app.OrdersSOAPService" %>
 <%@ page import="controller.OrderController" %>
-<%@ page import="controller.GoodsController" %><%--
+<%@ page import="controller.GoodsController" %>
+<%@ page import="controller.OrderLineController" %><%--
   Created by IntelliJ IDEA.
   User: fzholud
   Date: 02.06.2020
@@ -24,6 +25,9 @@
 <%
     InitialContext ic = new InitialContext();
     OrderController orderController = (OrderController) ic.lookup("java:app/" + application.getContextPath() + "/OrderControllerImpl");
+
+    OrderLineController orderLineController = (OrderLineController) ic.lookup("java:app/" + application.getContextPath() + "/OrderLineControllerImpl");
+    request.setAttribute("orderLineController", orderLineController);
 
     GoodsController goodsController = (GoodsController) ic.lookup("java:app/" + application.getContextPath() + "/GoodsControllerImpl");
     request.setAttribute("goodsController", goodsController);
@@ -55,7 +59,10 @@
                 </button>
             </td>
             <td>
-                <button>Delete</button>
+<%--                <button onclick="${orderLineController.deleteOrderLine(orderLineDtos.get(j))}--%>
+<%--                        location.href='orderLine.jsp?orderNumber=<%=orderNumber%>'">Delete</button>--%>
+                <button onclick="location.href='deletingOrderLine.jsp?orderNumber=<%=orderNumber%>&id=${orderLineDtos.get(j).id}'">Delete</button>
+<%--                <button>Delete</button>--%>
             </td>
         </tr>
         <c:set var="j" value="${j+1}"/>

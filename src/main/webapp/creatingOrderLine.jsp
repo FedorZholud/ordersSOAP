@@ -35,7 +35,5 @@
     }
     const nextPage = goToOrderLine();
 </script>
-<%--    <jsp:param name="orderNumber" value="<%=request.getParameter("orderNumber")%>"/>--%>
-<%--</jsp:forward>--%>
 </body>
 </html>
