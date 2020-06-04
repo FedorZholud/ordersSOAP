@@ -22,7 +22,6 @@ public class OrderLineDtoToEntityJpaMapper implements DtoToEntityJpaMapper<Order
 
         OrderLineEntity orderLineEntity = new OrderLineEntity();
         orderLineEntity.setOrderNumber(dto.getOrderNumber());
-        orderLineEntity.setAmount(dto.getAmount());
         orderLineEntity.setGoodsId(goodsEntity.getId());
         orderLineEntity.setAmount(dto.getAmount());
         orderLineEntity.setPrice(goodsEntity.getPrice());

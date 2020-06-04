@@ -6,9 +6,8 @@
     text-align: center;
 }
 
-.orderTable {
-    border: black 1px;
-    border-collapse: collapse;
+td {
+    border: 1px black solid;
 }
 
 button {

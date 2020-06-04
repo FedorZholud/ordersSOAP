@@ -42,8 +42,13 @@ public class OrdersSOAPServiceImpl implements OrdersSOAPService {
     }
 
     @Override
-    public List<OrderLineDto> getOrderLine(long orderNumber, int page, int pageSize) {
-        return orderLineService.getOrderLine(orderNumber, page, pageSize);
+    public List<OrderLineDto> getOrderLineForOrder(long orderNumber, int page, int pageSize) {
+        return orderLineService.getOrderLineForOrder(orderNumber, page, pageSize);
+    }
+
+    @Override
+    public OrderLineDto getOrderLine(long id) {
+        return orderLineService.getOrderLine(id);
     }
 
     @Override
