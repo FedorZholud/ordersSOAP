@@ -31,17 +31,24 @@
     List<GoodsDto> goodsDtos = goodsService.findAllGoods(1, 10);
     request.setAttribute("goods", goodsDtos);
 %>
-<input type="number" value="amount">
-<form action="createOrderLine.jsp">
-    <select name="goodsId">
-        <c:set var="i" value="0"/>
-        <c:forEach var="good" items="${goods}">
-            <option value="${goods.get(i).id}">${goods.get(i).name}</option>
-            <c:set var="i" value="${i+1}"/>
-        </c:forEach>
-    </select>
-<%--    <input type="submit" value="Submit">--%>
+<form action="creatingOrderLine.jsp" method="post">
+    <div style="margin-left: 10px; margin-top: 10px">
+        <input type="hidden" name="orderNumber" value="<%=request.getParameter("orderNumber")%>"/>
+        <select name="goodsId">
+            <c:set var="i" value="0"/>
+            <c:forEach var="good" items="${goods}">
+                <option value="${goods.get(i).id}" style="font-size: 16px">${goods.get(i).name}</option>
+                <c:set var="i" value="${i+1}"/>
+            </c:forEach>
+        </select>
+    </div>
+    <div style="margin-left: 10px; margin-top: 10px">
+        <input id="amount" name="amount" type="number">
+    </div>
+    <button style="margin-left: 10px; margin-top: 10px; font-size: 16px"
+            onclick="this.form.submit();
+                    location.href = 'orderLine.jsp?orderNumber=<%=request.getParameter("orderNumber")%>'">Create
+    </button>
 </form>
-<button onclick="location.href = 'orderLine.jsp?orderNumber=<%=request.getParameter("orderNumber")%>'">Create</button>
 </body>
 </html>

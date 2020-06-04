@@ -22,6 +22,7 @@
 <%@ page import="entity.impl.OrderEntity" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.stream.Collectors" %>
+<%@ page import="controller.OrderController" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -37,7 +38,7 @@
 <%--%>--%>
 <%
     InitialContext ic = new InitialContext();
-    OrderService orderService = (OrderService) ic.lookup("java:app/" + application.getContextPath() + "/OrderServiceImpl");
+    OrderController orderController = (OrderController) ic.lookup("java:app/" + application.getContextPath() + "/OrderControllerImpl");
 %>
 <header>
     <h1>Active Orders</h1>
@@ -53,7 +54,7 @@
     <%--    <%List<OrderEntity> orderEntities = orderJpaRepository.findAll(1, 10);%>--%>
     <%--    <%request.setAttribute("orders", orderEntities);%>--%>
     <%
-        List<OrderDto> orderDtos = orderService.getAllOrders(1, 10);
+        List<OrderDto> orderDtos = orderController.getAllOrders(1, 10);
         request.setAttribute("orders", orderDtos);
     %>
 <%--    <%!--%>

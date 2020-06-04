@@ -4,7 +4,9 @@
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="service.OrderService" %>
 <%@ page import="service.GoodsService" %>
-<%@ page import="app.OrdersSOAPService" %><%--
+<%@ page import="app.OrdersSOAPService" %>
+<%@ page import="controller.OrderController" %>
+<%@ page import="controller.GoodsController" %><%--
   Created by IntelliJ IDEA.
   User: fzholud
   Date: 02.06.2020
@@ -21,18 +23,15 @@
 <body>
 <%
     InitialContext ic = new InitialContext();
-    OrderService orderService = (OrderService) ic.lookup("java:app/" + application.getContextPath() + "/OrderServiceImpl");
+    OrderController orderController = (OrderController) ic.lookup("java:app/" + application.getContextPath() + "/OrderControllerImpl");
 
-    GoodsService goodsService = (GoodsService) ic.lookup("java:app/" + application.getContextPath() + "/GoodsServiceImpl");
-    request.setAttribute("goodsService", goodsService);
+    GoodsController goodsController = (GoodsController) ic.lookup("java:app/" + application.getContextPath() + "/GoodsControllerImpl");
+    request.setAttribute("goodsController", goodsController);
 
     long orderNumber = Long.parseLong(request.getParameter("orderNumber"));
 
-    List<OrderLineDto> orderLineDtos = orderService.getOrder(orderNumber).getOrderList();
+    List<OrderLineDto> orderLineDtos = orderController.getOrder(orderNumber).getOrderList();
     request.setAttribute("orderLineDtos", orderLineDtos);
-
-    int update = 0;
-    request.setAttribute("update", update);
 %>
 <table border="1" cellpadding="5" style="border-collapse: collapse; margin: 10px; border: black 2px solid">
     <tr bgcolor="#a9a9a9">
@@ -45,16 +44,24 @@
     </tr>
     <c:set var="j" value="0"/>
     <c:forEach var="orderLine" items="${orderLineDtos}">
-        <td><c:out value="${goodsService.findGoodsById(orderLineDtos.get(j).goodsId).name}"/></td>
-        <td><c:out value="${orderLineDtos.get(j).amount}"/></td>
-        <td><c:out value="${orderLineDtos.get(j).price}"/></td>
-        <td><c:out value="${orderLineDtos.get(j).priceSum}"/></td>
-        <td><button onclick="location.href = 'updateOrderLine.jsp?orderNumber=<%=orderNumber%>&id=${orderLineDtos.get(j).id}'">Update</button></td>
-        <td><button>Delete</button></td>
+        <tr>
+            <td><c:out value="${goodsController.getGoodsById(orderLineDtos.get(j).goodsId).name}"/></td>
+            <td><c:out value="${orderLineDtos.get(j).amount}"/></td>
+            <td><c:out value="${orderLineDtos.get(j).price}"/></td>
+            <td><c:out value="${orderLineDtos.get(j).priceSum}"/></td>
+            <td>
+                <button onclick="location.href = 'updateOrderLine.jsp?orderNumber=<%=orderNumber%>&id=${orderLineDtos.get(j).id}'">
+                    Update
+                </button>
+            </td>
+            <td>
+                <button>Delete</button>
+            </td>
+        </tr>
         <c:set var="j" value="${j+1}"/>
     </c:forEach>
 </table>
-<button  onclick="location.href = 'createOrderLine.jsp?orderNumber=<%=orderNumber%>'" style="margin-left: 10px">
+<button onclick="location.href = 'createOrderLine.jsp?orderNumber=<%=orderNumber%>'" style="margin-left: 10px">
     Create OrderLine
 </button>
 </body>

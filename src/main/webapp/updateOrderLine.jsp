@@ -1,9 +1,9 @@
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="model.impl.OrderLineDto" %>
 <%@ page import="model.impl.GoodsDto" %>
-<%@ page import="java.util.List" %>
-<%@ page import="service.OrderLineService" %>
-<%@ page import="service.GoodsService" %><%--
+<%@ page import="controller.OrderLineController" %>
+<%@ page import="controller.GoodsController" %>
+<%--
   Created by IntelliJ IDEA.
   User: fzholud
   Date: 03.06.2020
@@ -19,22 +19,41 @@
 <body>
 <%
     InitialContext ic = new InitialContext();
-    OrderLineService orderLineService = (OrderLineService) ic.lookup("java:app/" + application.getContextPath() + "/OrderLineServiceImpl");
+    OrderLineController orderLineController = (OrderLineController) ic.lookup("java:app/" + application.getContextPath() + "/OrderLineControllerImpl");
 
-    GoodsService goodsService = (GoodsService) ic.lookup("java:app/" + application.getContextPath() + "/GoodsServiceImpl");
+    GoodsController goodsController = (GoodsController) ic.lookup("java:app/" + application.getContextPath() + "/GoodsControllerImpl");
 
     long id = Long.parseLong(request.getParameter("id"));
 
-    request.setAttribute("orderLineService", orderLineService);
+    request.setAttribute("orderLineService", orderLineController);
 
-    OrderLineDto orderLineDto = orderLineService.getOrderLine(id);
+    OrderLineDto orderLineDto = orderLineController.getOrderLine(id);
     request.setAttribute("orderLineDto", orderLineDto);
 
-    GoodsDto goodsDto = goodsService.findGoodsById(orderLineDto.getGoodsId());
+    GoodsDto goodsDto = goodsController.getGoodsById(orderLineDto.getGoodsId());
     request.setAttribute("goodsDto", goodsDto);
+    request.setAttribute("amount", 15);
+
+    int amount = request.getParameter("amount") == null ? orderLineDto.getAmount() : Integer.parseInt(request.getParameter("amount"));
 %>
-<div style="margin: 10px">GoodsName: <%=goodsDto.getName()%></div><br/>
-Amount: <input type="number" value="amount" content="<%=orderLineDto.getAmount()%>"><br/>
+<div style="margin-top: 10px; margin-left: 10px">GoodsName: <%=goodsDto.getName()%>
+</div>
+<br/>
+<div style="margin-left: 10px">
+    <form action="updateOrderLine.jsp">
+        <input type="hidden" name="orderNumber" value="<%=orderLineDto.getOrderNumber()%>">
+        <input type="hidden" name="id" value="<%=orderLineDto.getId()%>">
+        Amount: <input id="amount" name="amount" type="number"
+                       value="<%=amount%>" onchange="this.form.submit()">
+    </form>
+</div>
+<br/>
+<div style="margin-left: 10px">Price: <%=orderLineDto.getPrice()%>
+</div>
+<br/>
+<div style="margin-left: 10px">PriceSum: <%=orderLineDto.getPriceSum()%>
+</div>
+<br/>
 <%--<form action="updateOrderLine.jsp">--%>
 <%--    <select name="goodsId">--%>
 <%--        <c:set var="i" value="0"/>--%>
@@ -44,6 +63,19 @@ Amount: <input type="number" value="amount" content="<%=orderLineDto.getAmount()
 <%--        </c:forEach>--%>
 <%--    </select>--%>
 <%--</form>--%>
-<button onclick="location.href='orderLine.jsp?orderNumber=<%=orderLineDto.getOrderNumber()%>'">Save</button>
+<%
+    orderLineDto = OrderLineDto.builder()
+            .setId(orderLineDto.getId())
+            .setOrderNumber(orderLineDto.getOrderNumber())
+            .setGoodsId(orderLineDto.getGoodsId())
+            .setAmount(amount)
+            .setPrice(orderLineDto.getPrice())
+            .setPriceSum(orderLineDto.getPriceSum())
+            .build();
+%>
+<button style="margin-left: 10px; font-size: 16px"
+        onclick="<%orderLineController.updateOrderLine(orderLineDto);%>;location.href='orderLine.jsp?orderNumber=<%=orderLineDto.getOrderNumber()%>'">
+    Save
+</button>
 </body>
 </html>
