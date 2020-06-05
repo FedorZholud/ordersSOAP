@@ -78,14 +78,34 @@
         <c:forEach var="order" items="${orders}">
             <tr>
                 <td><c:out value="${orders.get(i).orderNumber}"/></td>
-                <td><c:out value="${orders.get(i).customer}"/></td>
+                <td id="customerRow + ${i}"><c:out value="${orders.get(i).customer}"/></td>
                 <td><c:out value="${orders.get(i).orderTime}"/></td>
                 <td>
                     <c:if test="${orders.get(i).orderList.size() != 0}">
                         <button onclick="winOpen(${orders.get(i).orderNumber})">Show OrderLine</button>
                     </c:if>
+                    <c:if test="${orders.get(i).orderList.size() == 0}">
+                        <button onclick="winOpen(${orders.get(i).orderNumber})">Add OrderLine</button>
+                    </c:if>
                 </td>
-                <td><button>Update</button></td>
+                <td>
+                    <button onclick="document.getElementById('customerRow + ${i}').contentEditable = 'true';
+                document.getElementById('customerRow + ${i}').focus(); this.style = 'display: none;';
+                            document.getElementById('saveButton + ${i}').style.display = 'block'">Update</button>
+                    <script>
+                        function getNewUrlWithCustomer() {
+                            let baseUrl = 'orders.jsp?'
+
+                            let customerParam = 'customer=' + document.getElementById('customerRow${i}').textContent;
+                            let orderNumberParam = 'orderNumber=' + ${orders.get(i).orderNumber};
+
+                            return baseUrl + orderNumberParam + '&' + customerParam;
+                        }
+                    </script>
+<%--                    <button id="saveButton + ${i}" style="display: none" onclick="location.reload()">Save</button>--%>
+                    <button id="saveButton + ${i}" style="display: none"
+                            onclick="location.href = 'updatingOrder.jsp?orderNumber=' + ${orders.get(i).orderNumber} + '&customer=' + document.getElementById('customerRow + ${i}').textContent">Save</button>
+                </td>
                 <td><button>Delete</button></td>
                     <%--                    <td>--%>
                     <%--                        <table align="center">--%>
@@ -112,5 +132,10 @@
         </c:forEach>
     </table>
 </div>
+<script>
+    if (window.performance && window.performance.navigation.type == window.performance.navigation.TYPE_BACK_FORWARD) {
+        location.href = "index.jsp";
+    }
+</script>
 </body>
 </html>

@@ -17,7 +17,7 @@
 </header>
 <div class="buttons">
     <button onclick="location.href = 'orders.jsp'">Show all orders</button>
-    <button onclick="location.href = '/createOrder'">Create new order</button>
+    <button onclick="location.href = 'createOrder.jsp'">Create new order</button>
 </div>
 </body>
 </html>

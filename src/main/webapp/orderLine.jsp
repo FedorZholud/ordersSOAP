@@ -71,5 +71,11 @@
 <button onclick="location.href = 'createOrderLine.jsp?orderNumber=<%=orderNumber%>'" style="margin-left: 10px">
     Create OrderLine
 </button>
+<script>
+    window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
+    }
+</script>
 </body>
 </html>
