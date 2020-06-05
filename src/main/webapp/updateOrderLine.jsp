@@ -25,7 +25,7 @@
 
     long id = Long.parseLong(request.getParameter("id"));
 
-    request.setAttribute("orderLineService", orderLineController);
+    request.setAttribute("orderLineController", orderLineController);
 
     OrderLineDto orderLineDto = orderLineController.getOrderLine(id);
     request.setAttribute("orderLineDto", orderLineDto);
@@ -40,7 +40,8 @@
 </div>
 <br/>
 <div style="margin-left: 10px">
-    <form action="updateOrderLine.jsp">
+    <form id="form1" action="updateOrderLine.jsp">
+
         <input type="hidden" name="orderNumber" value="<%=orderLineDto.getOrderNumber()%>">
         <input type="hidden" name="id" value="<%=orderLineDto.getId()%>">
         Amount: <input id="amount" name="amount" type="number"
@@ -64,17 +65,20 @@
 <%--    </select>--%>
 <%--</form>--%>
 <%
-    orderLineDto = OrderLineDto.builder()
-            .setId(orderLineDto.getId())
-            .setOrderNumber(orderLineDto.getOrderNumber())
-            .setGoodsId(orderLineDto.getGoodsId())
-            .setAmount(amount)
-            .setPrice(orderLineDto.getPrice())
-            .setPriceSum(orderLineDto.getPriceSum())
-            .build();
+    if (request.getParameter("amount") != null) {
+        OrderLineDto updatedOrderLineDto = OrderLineDto.builder()
+                .setId(orderLineDto.getId())
+                .setOrderNumber(orderLineDto.getOrderNumber())
+                .setGoodsId(orderLineDto.getGoodsId())
+                .setAmount(amount)
+                .setPrice(orderLineDto.getPrice())
+                .setPriceSum(orderLineDto.getPriceSum())
+                .build();
+
+        orderLineController.updateOrderLine(updatedOrderLineDto);
+    }
 %>
-<button style="margin-left: 10px; font-size: 16px"
-        onclick="<%orderLineController.updateOrderLine(orderLineDto);%>;location.href='orderLine.jsp?orderNumber=<%=orderLineDto.getOrderNumber()%>'">
+<button style="margin-left: 10px; font-size: 16px" onclick="location.href = 'orderLine.jsp?orderNumber=<%=orderLineDto.getOrderNumber()%>'">
     Save
 </button>
 </body>

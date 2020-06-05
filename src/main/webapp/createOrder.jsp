@@ -8,9 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <link href="index.css" rel="stylesheet">
+    <title>Create Order</title>
 </head>
 <body>
-
+<h1>Create new order</h1>
+<form action="createOrder.jsp">
+    Enter your E-Mail: <input name="customer" type="text"
+                    onchange="this.form.submit()">
+</form>
 </body>
 </html>
