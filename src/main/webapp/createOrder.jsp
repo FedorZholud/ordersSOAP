@@ -11,11 +11,15 @@
     <link href="index.css" rel="stylesheet">
     <title>Create Order</title>
 </head>
-<body>
-<h1>Create new order</h1>
-<form action="createOrder.jsp">
-    Enter your E-Mail: <input name="customer" type="text"
-                    onchange="this.form.submit()">
-</form>
+<body style="margin: 0 auto">
+<header style="background-image: linear-gradient(to bottom,deepskyblue, white); height: 10%">
+    <h1>Create new order</h1>
+</header>
+<div style="text-align: center">
+    <form action="creatingOrder.jsp" method="post">
+        Enter your E-Mail: <input name="customer" type="text">
+        <button type="submit" onclick="this.form.submit()">Create</button>
+    </form>
+</div>
 </body>
 </html>

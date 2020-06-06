@@ -11,8 +11,8 @@
     <link href="index.css" rel="stylesheet">
     <title>Title</title>
 </head>
-<body>
-<header>
+<body style="margin: 0 auto">
+<header style="background-image: linear-gradient(to bottom,deepskyblue, white); height: 10%">
     <h1>Orders SOAP Services</h1>
 </header>
 <div class="buttons">

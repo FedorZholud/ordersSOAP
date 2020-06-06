@@ -31,7 +31,7 @@
     <link href="index.css" rel="stylesheet">
     <title>Orders</title>
 </head>
-<body>
+<body style="margin: 0 auto">
 <%--<%--%>
 <%--    InitialContext ic = new InitialContext();--%>
 <%--    OrderJpaRepository orderJpaRepository = (OrderJpaRepository) ic.lookup("java:app/" + application.getContextPath() + "/OrderJpaRepository");--%>
@@ -40,7 +40,7 @@
     InitialContext ic = new InitialContext();
     OrderController orderController = (OrderController) ic.lookup("java:app/" + application.getContextPath() + "/OrderControllerImpl");
 %>
-<header>
+<header style="background-image: linear-gradient(to bottom,deepskyblue, white); height: 10%">
     <h1>Active Orders</h1>
 </header>
 <script>
@@ -50,11 +50,25 @@
             "height=400,width=600,status=yes,toolbar=no,menubar=no,location=no")
     }
 </script>
+<div style="display: table; margin: 0 auto">
 <div class="dataTables">
     <%--    <%List<OrderEntity> orderEntities = orderJpaRepository.findAll(1, 10);%>--%>
     <%--    <%request.setAttribute("orders", orderEntities);%>--%>
     <%
-        List<OrderDto> orderDtos = orderController.getAllOrders(1, 10);
+        int ordersPage = 1;
+
+        if (request.getParameter("page") != null) {
+            ordersPage = Integer.parseInt(request.getParameter("page"));
+        }
+
+        request.setAttribute("ordersPage", ordersPage);
+
+        final int PAGE_SIZE = 5;
+
+        int nextPage = orderController.getAllOrders(ordersPage + 1, PAGE_SIZE).size();
+        request.setAttribute("nextPage", nextPage);
+
+        List<OrderDto> orderDtos = orderController.getAllOrders(ordersPage, PAGE_SIZE);
         request.setAttribute("orders", orderDtos);
     %>
 <%--    <%!--%>
@@ -64,7 +78,7 @@
 <%--                    .collect(Collectors.toList()).get(0);--%>
 <%--        }--%>
 <%--    %>--%>
-    <table border="1" cellpadding="5" align="center" style="border-collapse: collapse; border: black 2px solid">
+    <table border="1" cellpadding="5" align="center" style="border-collapse: collapse; border: black 2px solid; margin: 5px">
         <caption><h2>List of orders</h2></caption>
         <tr bgcolor="#a9a9a9" style="border: black 2px solid">
             <th style="border: black 2px solid">OrderNumber</th>
@@ -106,7 +120,7 @@
                     <button id="saveButton + ${i}" style="display: none"
                             onclick="location.href = 'updatingOrder.jsp?orderNumber=' + ${orders.get(i).orderNumber} + '&customer=' + document.getElementById('customerRow + ${i}').textContent">Save</button>
                 </td>
-                <td><button>Delete</button></td>
+                <td><button onclick="location.href = 'deletingOrder.jsp?orderNumber=${orders.get(i).orderNumber}&page=${ordersPage}'">Delete</button></td>
                     <%--                    <td>--%>
                     <%--                        <table align="center">--%>
                     <%--                            <tr>--%>
@@ -131,6 +145,18 @@
             <c:set var="i" value="${i+1}"/>
         </c:forEach>
     </table>
+</div>
+    <div>
+        <button onclick="location.href = 'createOrder.jsp'">Create new order</button>
+    </div>
+    <div>
+        <c:if test="${ordersPage != 1}">
+            <button onclick="location.href = 'orders.jsp?page=${ordersPage - 1}'">< Previous</button>
+        </c:if>
+        <c:if test="${nextPage != 0}">
+            <button style="float: right" onclick="location.href = 'orders.jsp?page=${ordersPage + 1}'">Next ></button>
+        </c:if>
+    </div>
 </div>
 <script>
     if (window.performance && window.performance.navigation.type == window.performance.navigation.TYPE_BACK_FORWARD) {
