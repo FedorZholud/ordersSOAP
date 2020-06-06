@@ -118,7 +118,7 @@
                     </script>
 <%--                    <button id="saveButton + ${i}" style="display: none" onclick="location.reload()">Save</button>--%>
                     <button id="saveButton + ${i}" style="display: none"
-                            onclick="location.href = 'updatingOrder.jsp?orderNumber=' + ${orders.get(i).orderNumber} + '&customer=' + document.getElementById('customerRow + ${i}').textContent">Save</button>
+                            onclick="location.href = 'updatingOrder.jsp?orderNumber=' + ${orders.get(i).orderNumber} + '&customer=' + document.getElementById('customerRow + ${i}').textContent + '&page=${ordersPage}'">Save</button>
                 </td>
                 <td><button onclick="location.href = 'deletingOrder.jsp?orderNumber=${orders.get(i).orderNumber}&page=${ordersPage}'">Delete</button></td>
                     <%--                    <td>--%>

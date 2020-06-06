@@ -26,10 +26,17 @@
             .setOrderList(orderDto.getOrderList())
             .build();
     orderController.updateOrder(orderDto);
+
+    int ordersPage = 1;
+
+    if(request.getParameter("page") != null)
+        ordersPage = Integer.parseInt(request.getParameter("page"));
+
+    request.setAttribute("ordersPage", ordersPage);
 %>
 <script>
     function goToOrderLine() {
-        location.href='orders.jsp';
+        location.href='orders.jsp?page=${ordersPage}';
     }
     const nextPage = goToOrderLine();
 </script>
