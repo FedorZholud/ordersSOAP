@@ -54,12 +54,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private OrderEntity createOrdersEntity(String customer) {
-        Date currentDate = new Date();
-
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setCustomer(customer);
-        orderEntity.setOrderTime(new Timestamp(currentDate.getTime()));
-        orderEntity.setOrderState(OrderState.ACTIVE);
 
         orderJpaRepository.create(orderEntity);
 
