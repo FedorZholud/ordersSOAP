@@ -78,7 +78,7 @@ public class OrderLineServiceImpl implements OrderLineService {
 
     @Override
     @Transactional
-    public List<OrderLineDto> getOrderLine(long orderNumber, int page, int pageSize) {
+    public List<OrderLineDto> getOrderLineForOrder(long orderNumber, int page, int pageSize) {
         List<OrderLineEntity> ordersListEntities = orderLineJpaRepository.findAll(orderNumber, page, pageSize);
 
         return ordersListEntities.stream()
@@ -129,5 +129,11 @@ public class OrderLineServiceImpl implements OrderLineService {
         logger.info(orderLineEntity.toString());
 
         return orderLineEntity.getId();
+    }
+
+    @Override
+    @Transactional
+    public OrderLineDto getOrderLine(long id) {
+        return orderLineDtoJpaSymmetricMapper.entityToDto(orderLineJpaRepository.find(id));
     }
 }

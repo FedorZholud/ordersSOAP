@@ -27,9 +27,12 @@ public interface OrdersSOAPService {
     GoodsDto getGoodsById(@WebParam(name = "id") long id);
 
     @WebMethod
-    List<OrderLineDto> getOrderLine(@WebParam(name = "orderNumber") long orderNumber,
-                                    @WebParam(name = "page") int page,
-                                    @WebParam(name = "pageSize") int pageSize);
+    List<OrderLineDto> getOrderLineForOrder(@WebParam(name = "orderNumber") long orderNumber,
+                                            @WebParam(name = "page") int page,
+                                            @WebParam(name = "pageSize") int pageSize);
+
+    @WebMethod
+    OrderLineDto getOrderLine(@WebParam(name = "id") long id);
 
     @WebMethod
     @WebResult(name = "orderLineId") long createOrderLine(@WebParam(name = "orderLine") OrderLineDto orderLineDto);
